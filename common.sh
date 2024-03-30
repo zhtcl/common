@@ -311,7 +311,7 @@ mv -f uniq.conf feeds.conf.default
 # 这里增加了源,要对应的删除/etc/opkg/distfeeds.conf插件源
 cat >>"feeds.conf.default" <<-EOF
 src-git danshui1 https://github.com/281677160/openwrt-package.git;${SOURCE}
-#src-git kenzok8 https://github.com/kenzok8/openwrt-packages/tree/master/luci-app-adguardhome
+#src-git adg https://github.com/rufengsuixing/luci-app-adguardhome.git,master
 src-git helloworld https://github.com/fw876/helloworld.git
 src-git passwall3 https://github.com/xiaorouji/openwrt-passwall-packages;main
 EOF
@@ -330,9 +330,9 @@ luci-app-gost,gost,luci-app-smartdns,smartdns,luci-app-wizard,luci-app-msd_lite,
 luci-app-ssr-plus,*luci-app-passwall*,luci-app-vssr,lua-maxminddb,v2dat,v2ray-geodata"
 t=(${z//,/ })
 for x in ${t[@]}; do \
-  find . -type d -name "${x}" |grep -v 'danshui\|freifunk\|helloworld\|passwall3|kenzok8' |xargs -i rm -rf {}; \
+  find . -type d -name "${x}" |grep -v 'danshui\|freifunk\|helloworld\|passwall3|adg' |xargs -i rm -rf {}; \
 done
-find . -type d -name "luci-app-adguardhome" |grep -v 'kenzok8' |xargs -i rm -rf {}; 
+find . -type d -name "luci-app-adguardhome" |grep -v 'adg' |xargs -i rm -rf {}; 
 
 case "${SOURCE_CODE}" in
 COOLSNOWWOLF)
