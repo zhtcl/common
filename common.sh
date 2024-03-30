@@ -582,7 +582,7 @@ echo -e "\nDISTRIB_SOURCECODE='${SOURCE}_${LUCI_EDITION}'" >> "${REPAIR_PATH}" &
 # 给固件保留配置更新固件的保留项目
 if [[ -z "$(grep "background" ${KEEPD_PATH})" ]]; then
 cat >>"${KEEPD_PATH}" <<-EOF
-/etc/config/AdGuardHome.yaml
+/etc/AdGuardHome.yaml
 /www/luci-static/argon/background/
 /etc/smartdns/custom.conf
 EOF
