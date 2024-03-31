@@ -310,8 +310,8 @@ mv -f uniq.conf feeds.conf.default
 
 # 这里增加了源,要对应的删除/etc/opkg/distfeeds.conf插件源
 cat >>"feeds.conf.default" <<-EOF
-src-git danshui1 https://github.com/281677160/openwrt-package.git;${SOURCE}
-src-git adg https://github.com/rufengsuixing/luci-app-adguardhome.git;master
+#src-git danshui1 https://github.com/281677160/openwrt-package.git;${SOURCE}
+src-git danshui1 https://github.com/kenzok8/small-package;main
 src-git helloworld https://github.com/fw876/helloworld.git
 src-git passwall3 https://github.com/xiaorouji/openwrt-passwall-packages;main
 EOF
@@ -332,8 +332,7 @@ t=(${z//,/ })
 for x in ${t[@]}; do \
   find . -type d -name "${x}" |grep -v 'danshui\|freifunk\|helloworld\|passwall3|adg' |xargs -i rm -rf {}; \
 done
-find . -type d -name "luci-app-adguardhome" |grep -v 'adg' |xargs -i rm -rf {}; 
-
+find . -type d -name "luci-app-openclash" xargs -i rm -rf {}; 
 case "${SOURCE_CODE}" in
 COOLSNOWWOLF)
   s="mentohust"
