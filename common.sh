@@ -1210,8 +1210,10 @@ CONFIG_PACKAGE_luci=y
 CONFIG_PACKAGE_default-settings=y
 CONFIG_PACKAGE_default-settings-chn=y
 EOF
-}
 
+# 由firewall3功换至firewall4
+sed -i 's/+firewall/+uci-firewall/g' ${HOME_PATH}/feeds/luci/applications/luci-app-firewall/Makefile
+}
 
 function Diy_prevent() {
 cd ${HOME_PATH}
