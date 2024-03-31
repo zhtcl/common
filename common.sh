@@ -472,9 +472,9 @@ XWRT)
 ;;
 esac
 
-for X in $(ls -1 "${HOME_PATH}/feeds/passwall3"); do
-  find . -type d -name "${X}" |grep -v 'danshui\|passwall3' |xargs -i rm -rf {}
-done
+#for X in $(ls -1 "${HOME_PATH}/feeds/passwall3"); do
+#  find . -type d -name "${X}" |grep -v 'danshui\|passwall3' |xargs -i rm -rf {}
+#done
 # 更换golang版本
 rm -rf ${HOME_PATH}/feeds/packages/lang/golang
 git clone https://github.com/sbwml/packages_lang_golang -b 22.x ${HOME_PATH}/feeds/packages/lang/golang
