@@ -325,7 +325,7 @@ fi
 z="*luci-theme-argone*,*luci-theme-argon*,*luci-app-argon-config*,*luci-app-argone-config*,*luci-theme-Butterfly*,*luci-theme-netgear*,*luci-theme-atmaterial*, \
 luci-theme-rosy,luci-theme-darkmatter,luci-theme-infinityfreedom,luci-theme-design,luci-app-design-config, \
 luci-theme-bootstrap-mod,luci-theme-freifunk-generic,luci-theme-opentomato,luci-theme-kucat, \
-luci-app-chinesesubfinder,luci-app-bmtedge,luci-app-bypass,miniupnpd,luci-app-torbp,*luci-app-passwall*,luci-app-passwall,luci-app-passwall2"
+luci-app-openclash,luci-app-chinesesubfinder,luci-app-bmtedge,luci-app-bypass,miniupnpd,luci-app-torbp,*luci-app-passwall*,luci-app-passwall,luci-app-passwall2"
 #luci-app-eqos,adguardhome,luci-app-adguardhome,mosdns,luci-app-mosdns,luci-app-wol,luci-app-openclash, \
 #luci-app-gost,gost,luci-app-smartdns,smartdns,luci-app-wizard,luci-app-msd_lite,msd_lite, \
 #luci-app-ssr-plus,*luci-app-passwall*,luci-app-passwall,luci-app-passwall2,luci-app-bypass,luci-app-vssr,lua-maxminddb,v2dat,v2ray-geodata, \
@@ -784,16 +784,16 @@ else
   echo "src-git passwall2 https://github.com/xiaorouji/openwrt-passwall2.git;main" >> "feeds.conf.default"
 fi
 
-# openclash
-#find . -type d -name '*luci-app-openclash*' -o -name '*OpenClash*' | xargs -i rm -rf {}
-#sed -i '/OpenClash/d' "feeds.conf.default"
-#if [[ "${OpenClash_branch}" == "1" ]]; then
-#  echo "src-git OpenClash https://github.com/vernesong/OpenClash.git;dev" >> "feeds.conf.default"
-#  echo "OpenClash_branch=dev" >> ${GITHUB_ENV}
-#else
-#  echo "src-git OpenClash https://github.com/vernesong/OpenClash.git;master" >> "feeds.conf.default"
-#  echo "OpenClash_branch=master" >> ${GITHUB_ENV}
-#fi
+ openclash
+find . -type d -name '*luci-app-openclash*' -o -name '*OpenClash*' | xargs -i rm -rf {}
+sed -i '/OpenClash/d' "feeds.conf.default"
+if [[ "${OpenClash_branch}" == "1" ]]; then
+  echo "src-git OpenClash https://github.com/vernesong/OpenClash.git;dev" >> "feeds.conf.default"
+  echo "OpenClash_branch=dev" >> ${GITHUB_ENV}
+else
+  echo "src-git OpenClash https://github.com/vernesong/OpenClash.git;master" >> "feeds.conf.default"
+  echo "OpenClash_branch=master" >> ${GITHUB_ENV}
+fi
 
 cat feeds.conf.default|awk '!/^#/'|awk '!/^$/'|awk '!a[$1" "$2]++{print}' >uniq.conf
 mv -f uniq.conf feeds.conf.default
@@ -856,12 +856,11 @@ else
   echo "OpenClash_Core=0" >> ${GITHUB_ENV}
   [[ -d "${HOME_PATH}/files/etc/openclash/core" ]] && rm -rf ${HOME_PATH}/files/etc/openclash/core
 fi
-#luci_path="$({ find "${HOME_PATH}/feeds" |grep 'luci-openclash' |grep 'root'; } 2>"/dev/null")"
-#echo "$luci_path"
-#if [[ -f "${luci_path}" ]] && [[ `grep -c "uci get openclash.config.enable" "${luci_path}"` -eq '0' ]]; then
-#  sed -i '/uci -q set openclash.config.enable=0/i\if [[ "\$(uci get openclash.config.enable)" == "0" ]] || [[ -z "\$(uci get openclash.config.enable)" ]]; then' "${luci_path}"
-#  sed -i '/uci -q commit openclash/a\fi' "${luci_path}"
-#fi
+luci_path="$({ find "${HOME_PATH}/feeds" |grep 'luci-openclash' |grep 'root'; } 2>"/dev/null")"
+if [[ -f "${luci_path}" ]] && [[ `grep -c "uci get openclash.config.enable" "${luci_path}"` -eq '0' ]]; then
+  sed -i '/uci -q set openclash.config.enable=0/i\if [[ "\$(uci get openclash.config.enable)" == "0" ]] || [[ -z "\$(uci get openclash.config.enable)" ]]; then' "${luci_path}"
+  sed -i '/uci -q commit openclash/a\fi' "${luci_path}"
+fi
 
 if [[ "${Enable_IPV6_function}" == "1" ]]; then
   echo "固件加入IPV6功能"
