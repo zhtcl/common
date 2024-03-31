@@ -332,7 +332,7 @@ t=(${z//,/ })
 for x in ${t[@]}; do \
   find . -type d -name "${x}" |grep -v 'danshui\|freifunk\|helloworld\|passwall3|adg' |xargs -i rm -rf {}; \
 done
-find . -type d -name "luci-app-openclash" xargs -i rm -rf {}; 
+find . -type d -name "luci-app-openclash" |xargs -i rm -rf {}; 
 case "${SOURCE_CODE}" in
 COOLSNOWWOLF)
   s="mentohust"
