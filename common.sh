@@ -842,15 +842,16 @@ else
 fi
 
 # openclash内核
-#if [[ "${OpenClash_Core}" == "1" ]]; then
-#  echo "OpenClash_Core=1" >> ${GITHUB_ENV}
-#elif [[ "${OpenClash_Core}" == "2" ]]; then
-#  echo "OpenClash_Core=2" >> ${GITHUB_ENV}
-#else
-#  echo "OpenClash_Core=0" >> ${GITHUB_ENV}
-#  [[ -d "${HOME_PATH}/files/etc/openclash/core" ]] && rm -rf ${HOME_PATH}/files/etc/openclash/core
-#fi
-#luci_path="$({ find "${HOME_PATH}/feeds" |grep 'luci-openclash' |grep 'root'; } 2>"/dev/null")"
+if [[ "${OpenClash_Core}" == "1" ]]; then
+  echo "OpenClash_Core=1" >> ${GITHUB_ENV}
+elif [[ "${OpenClash_Core}" == "2" ]]; then
+  echo "OpenClash_Core=2" >> ${GITHUB_ENV}
+else
+  echo "OpenClash_Core=0" >> ${GITHUB_ENV}
+  [[ -d "${HOME_PATH}/files/etc/openclash/core" ]] && rm -rf ${HOME_PATH}/files/etc/openclash/core
+fi
+luci_path="$({ find "${HOME_PATH}/feeds" |grep 'luci-openclash' |grep 'root'; } 2>"/dev/null")"
+echo "$luci_path"
 #if [[ -f "${luci_path}" ]] && [[ `grep -c "uci get openclash.config.enable" "${luci_path}"` -eq '0' ]]; then
 #  sed -i '/uci -q set openclash.config.enable=0/i\if [[ "\$(uci get openclash.config.enable)" == "0" ]] || [[ -z "\$(uci get openclash.config.enable)" ]]; then' "${luci_path}"
 #  sed -i '/uci -q commit openclash/a\fi' "${luci_path}"
