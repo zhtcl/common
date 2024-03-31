@@ -312,8 +312,8 @@ mv -f uniq.conf feeds.conf.default
 cat >>"feeds.conf.default" <<-EOF
 #src-git danshui1 https://github.com/281677160/openwrt-package.git;${SOURCE}
 src-git danshui1 https://github.com/kenzok8/small-package;main
-src-git helloworld https://github.com/fw876/helloworld.git
-src-git passwall3 https://github.com/xiaorouji/openwrt-passwall-packages;main
+#src-git helloworld https://github.com/fw876/helloworld.git
+#src-git passwall3 https://github.com/xiaorouji/openwrt-passwall-packages;main
 EOF
 ./scripts/feeds update -a
 
@@ -327,13 +327,13 @@ luci-theme-rosy,luci-theme-darkmatter,luci-theme-infinityfreedom,luci-theme-desi
 luci-theme-bootstrap-mod,luci-theme-freifunk-generic,luci-theme-opentomato,luci-theme-kucat, \
 luci-app-eqos,adguardhome,luci-app-adguardhome,mosdns,luci-app-mosdns,luci-app-wol,luci-app-openclash, \
 luci-app-gost,gost,luci-app-smartdns,smartdns,luci-app-wizard,luci-app-msd_lite,msd_lite, \
-luci-app-ssr-plus,*luci-app-passwall*,luci-app-vssr,lua-maxminddb,v2dat,v2ray-geodata\
-base-files,dnsmasq,firewall,firewall4,fullconenat,libnftnl,luci-app-autoupdate,dnsmasq,nftables,opkg,ppp,ucl,upx,wireless-regdb"
-t=(${z//,/ })
-for x in ${t[@]}; do \
-  find . -type d -name "${x}" |grep -v 'danshui\|freifunk\|helloworld\|passwall3|adg' |xargs -i rm -rf {}; \
-done
-find . -type d -name "luci-app-openclash" |xargs -i rm -rf {}; 
+luci-app-ssr-plus,*luci-app-passwall*,luci-app-vssr,lua-maxminddb,v2dat,v2ray-geodata"
+#base-files,dnsmasq,firewall,firewall4,fullconenat,libnftnl,luci-app-autoupdate,dnsmasq,nftables,opkg,ppp,ucl,upx,wireless-regdb"
+#t=(${z//,/ })
+#for x in ${t[@]}; do \
+#  find . -type d -name "${x}" |grep -v 'danshui\|freifunk\|helloworld\|passwall3|adg' |xargs -i rm -rf {}; \
+#done
+#find . -type d -name "luci-app-openclash" |xargs -i rm -rf {}; 
 case "${SOURCE_CODE}" in
 COOLSNOWWOLF)
   s="mentohust"
@@ -768,26 +768,26 @@ source $BUILD_PATH/$DIY_PART_SH
 cd ${HOME_PATH}
 
 # passwall
-find . -type d -name '*luci-app-passwall*' -o -name 'passwall1' -o -name 'passwall2' | xargs -i rm -rf {}
-sed -i '/passwall.git\;luci/d; /passwall2/d' "feeds.conf.default"
-if [[ "${PassWall_luci_branch}" == "1" ]]; then
-  echo "src-git passwall1 https://github.com/xiaorouji/openwrt-passwall.git;luci-smartdns-dev" >> "feeds.conf.default"
-  echo "src-git passwall2 https://github.com/xiaorouji/openwrt-passwall2.git;main" >> "feeds.conf.default"
-else
-  echo "src-git passwall1 https://github.com/xiaorouji/openwrt-passwall.git;main" >> "feeds.conf.default"
-  echo "src-git passwall2 https://github.com/xiaorouji/openwrt-passwall2.git;main" >> "feeds.conf.default"
-fi
+#find . -type d -name '*luci-app-passwall*' -o -name 'passwall1' -o -name 'passwall2' | xargs -i rm -rf {}
+#sed -i '/passwall.git\;luci/d; /passwall2/d' "feeds.conf.default"
+#if [[ "${PassWall_luci_branch}" == "1" ]]; then
+#  echo "src-git passwall1 https://github.com/xiaorouji/openwrt-passwall.git;luci-smartdns-dev" >> "feeds.conf.default"
+#  echo "src-git passwall2 https://github.com/xiaorouji/openwrt-passwall2.git;main" >> "feeds.conf.default"
+#else
+#  echo "src-git passwall1 https://github.com/xiaorouji/openwrt-passwall.git;main" >> "feeds.conf.default"
+#  echo "src-git passwall2 https://github.com/xiaorouji/openwrt-passwall2.git;main" >> "feeds.conf.default"
+#fi
 
 # openclash
-find . -type d -name '*luci-app-openclash*' -o -name '*OpenClash*' | xargs -i rm -rf {}
-sed -i '/OpenClash/d' "feeds.conf.default"
-if [[ "${OpenClash_branch}" == "1" ]]; then
-  echo "src-git OpenClash https://github.com/vernesong/OpenClash.git;dev" >> "feeds.conf.default"
-  echo "OpenClash_branch=dev" >> ${GITHUB_ENV}
-else
-  echo "src-git OpenClash https://github.com/vernesong/OpenClash.git;master" >> "feeds.conf.default"
-  echo "OpenClash_branch=master" >> ${GITHUB_ENV}
-fi
+#find . -type d -name '*luci-app-openclash*' -o -name '*OpenClash*' | xargs -i rm -rf {}
+#sed -i '/OpenClash/d' "feeds.conf.default"
+#if [[ "${OpenClash_branch}" == "1" ]]; then
+#  echo "src-git OpenClash https://github.com/vernesong/OpenClash.git;dev" >> "feeds.conf.default"
+#  echo "OpenClash_branch=dev" >> ${GITHUB_ENV}
+#else
+#  echo "src-git OpenClash https://github.com/vernesong/OpenClash.git;master" >> "feeds.conf.default"
+#  echo "OpenClash_branch=master" >> ${GITHUB_ENV}
+#fi
 
 cat feeds.conf.default|awk '!/^#/'|awk '!/^$/'|awk '!a[$1" "$2]++{print}' >uniq.conf
 mv -f uniq.conf feeds.conf.default
