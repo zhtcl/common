@@ -311,7 +311,7 @@ mv -f uniq.conf feeds.conf.default
 # 这里增加了源,要对应的删除/etc/opkg/distfeeds.conf插件源
 cat >>"feeds.conf.default" <<-EOF
 src-git kenzo https://github.com/kenzok8/small-package;main
-src-git danshui1 https://github.com/281677160/openwrt-package.git;${SOURCE}
+#src-git danshui1 https://github.com/281677160/openwrt-package.git;${SOURCE}
 src-git helloworld https://github.com/fw876/helloworld.git
 src-git passwall3 https://github.com/xiaorouji/openwrt-passwall-packages;main
 #src-git argon https://github.com/jerrykuku/luci-theme-argon;master
@@ -325,29 +325,28 @@ EOF
 #  echo "src-git danshui2 https://github.com/zhtcl/openwrt-package.git;Theme1" >> "feeds.conf.default"
 #fi
 #small-package中要删除的插件
-z="luci-app-openclash,*luci-app-passwall*,luci-app-passwall,luci-app-passwall2,luci-app-ssr-plus, \
-#adguardhome,luci-app-adguardhome,mosdns,luci-app-mosdns,\
+z="luci-app-openclash,*luci-app-passwall*,luci-app-passwall,luci-app-passwall2,luci-app-ssr-plus,\
 luci-theme-argone*,*luci-app-argone-config*,*luci-theme-Butterfly*,*luci-theme-netgear*,*luci-theme-atmaterial*, \
 luci-theme-rosy,luci-theme-darkmatter,luci-theme-infinityfreedom,luci-theme-design,luci-app-design-config, \
-luci-theme-bootstrap-mod,luci-theme-freifunk-generic,luci-theme-opentomato,luci-theme-kucat, \
-luci-app-clouddrive2,luci-app-chinesesubfinder,luci-app-bmtedge,miniupnpd,luci-app-torbp"
+luci-theme-bootstrap-mod,luci-theme-freifunk-generic,luci-theme-opentomato,luci-theme-kucat"
+#adguardhome,luci-app-adguardhome,mosdns,luci-app-mosdns,\
+#luci-app-clouddrive2,luci-app-chinesesubfinder,luci-app-bmtedge,miniupnpd,luci-app-torbp"
 #luci-app-eqos,luci-app-wol, \
 #luci-app-gost,gost,luci-app-wizard,luci-app-msd_lite,msd_lite, \
 #lua-maxminddb,v2dat,v2ray-geodata, \
 t=(${z//,/ })
-echo "oka"
 for x in ${t[@]}; do \
   find . -type d -name "${x}" |grep -v 'danshui\|freifunk\|helloworld\|passwall3' |xargs -i rm -rf {}; \
 done
-#281677160/openwrt-package中要删除的插件
-z="*luci-app-wolplus,luci-app-wifidog,luci-app-unblockneteasemusic,luci-app-udp2raw,luci-app-ttnode,luci-app-tencentddns,luci-app-tcpdump,luci-app-syncthing,luci-app-switch-lan-play,luci-app-supervisord,luci-app-store,luci-app-ssr-mudb-server,luci-app-socat,luci-app-smartinfo,luci-app-shutdown,luci-app-rclone,luci-app-quickstart,luci-app-pppoe-server,luci-app-poweroff,luci-app-partexp,luci-app-oscam,luci-app-onliner,luci-app-oled,luci-app-oaf,luci-app-nodogsplash,luci-app-nginx-pingos,luci-app-nginx-manager,luci-app-natter,luci-app-msd_lite,luci-app-mosdns,luci-app-lucky,luci-app-linkease,luci-app-istorex,luci-app-iptvhelper,luci-app-ikoolproxy,luci-app-gost,luci-app-filebrowser,luci-app-fileassistant,luci-app-eqosplus,luci-app-ddnsto,luci-app-ddns-go,luci-app-cupsd,luci-app-cpulimit,luci-app-control-weburl,luci-app-control-webrestriction,luci-app-control-timewol,luci-app-cloudflarespeedtest,luci-app-clash,luci-app-chinadns-ng,luci-app-chatgpt,luci-app-autotimeset,luci-app-autoipsetadder,luci-app-amlogic,luci-app-alist,luci-app-advanced,luci-app-adguardhome,luci-app-3ginfo, \
-luci-app-smartdns,smartdns,*luci-theme-argon*,*luci-app-argon-config*,adguardhome,alist,chinadns-ng,cpulimit,ddns-go,filebrowser,gost,iptvhelper,lua-maxminddb,luci-lib-iform,lucky,msd_lite,natter,oaf,open-app-filter,oscam,udp2raw,upx-static,v2dat,v2ray-geodata"
-t=(${z//,/ })
-echo "okb"
-for x in ${t[@]}; do \
-  find . -type d -name "${x}" |grep -v 'kenzo\|helloworld\|passwall3' |xargs -i rm -rf {}; \
-  echo "okc"
-done
+##281677160/openwrt-package中要删除的插件
+#z="*luci-app-wolplus,luci-app-wifidog,luci-app-unblockneteasemusic,luci-app-udp2raw,luci-app-ttnode,luci-app-tencentddns,luci-app-tcpdump,luci-app-syncthing,luci-app-switch-lan-play,luci-app-supervisord,luci-app-store,luci-app-ssr-mudb-server,luci-app-socat,luci-app-smartinfo,luci-app-shutdown,luci-app-rclone,luci-app-quickstart,luci-app-pppoe-server,luci-app-poweroff,luci-app-partexp,luci-app-oscam,luci-app-onliner,luci-app-oled,luci-app-oaf,luci-app-nodogsplash,luci-app-nginx-pingos,luci-app-nginx-manager,luci-app-natter,luci-app-msd_lite,luci-app-mosdns,luci-app-lucky,luci-app-linkease,luci-app-istorex,luci-app-iptvhelper,luci-app-ikoolproxy,luci-app-gost,luci-app-filebrowser,luci-app-fileassistant,luci-app-eqosplus,luci-app-ddnsto,luci-app-ddns-go,luci-app-cupsd,luci-app-cpulimit,luci-app-control-weburl,luci-app-control-webrestriction,luci-app-control-timewol,luci-app-cloudflarespeedtest,luci-app-clash,luci-app-chinadns-ng,luci-app-chatgpt,luci-app-autotimeset,luci-app-autoipsetadder,luci-app-amlogic,luci-app-alist,luci-app-advanced,luci-app-adguardhome,luci-app-3ginfo, \
+#luci-app-smartdns,smartdns,*luci-theme-argon*,*luci-app-argon-config*,adguardhome,alist,chinadns-ng,cpulimit,ddns-go,filebrowser,gost,iptvhelper,lua-maxminddb,luci-lib-iform,lucky,msd_lite,natter,oaf,open-app-filter,oscam,udp2raw,upx-static,v2dat,v2ray-geodata"
+#t=(${z//,/ })
+#echo "okb"
+#for x in ${t[@]}; do \
+#  find . -type d -name "${x}" |grep -v 'kenzo\|helloworld\|passwall3' |xargs -i rm -rf {}; \
+#  echo "okc"
+#done
 
 case "${SOURCE_CODE}" in
 COOLSNOWWOLF)
