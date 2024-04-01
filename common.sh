@@ -327,12 +327,9 @@ EOF
 
 #small-package中要删除的插件
 echo "oka"
-#lluci-app-ssr-plus,
-z="uci-app-openclash,*luci-app-passwall*,luci-app-passwall,luci-app-passwall2, \
-luci-theme-argone*,*luci-app-argone-config*,*luci-theme-Butterfly*,*luci-theme-netgear*,*luci-theme-atmaterial*, \
-luci-theme-rosy,luci-theme-darkmatter,luci-theme-infinityfreedom,luci-theme-design,luci-app-design-config, \
-luci-theme-bootstrap-mod,luci-theme-freifunk-generic,luci-theme-opentomato,luci-theme-kucat"
-echo "删除small-package重复的主题、Openclash、Passwall和SSR Plus..."
+#lluci-app-ssr-plus, \
+z="uci-app-openclash,*luci-app-passwall*,luci-app-passwall,luci-app-passwall2"
+echo "删除small-package中Openclash、Passwall和SSR Plus..."
 t=(${z//,/ })
 for x in ${t[@]}; do \
   find . -type d -name "${x}" |grep -v 'danshui' |xargs -i rm -rf {}; \
@@ -341,6 +338,17 @@ done
 #删除small-package与源码冲突的插件
 rm -rf ${HOME_PATH}feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd-alt,miniupnpd-iptables,wireless-regdb}
 echo "删除small-package与源码冲突的插件..."
+
+#删除luci/themes多余的主题
+rm -rf ${HOME_PATH}feeds/luci/themes/{luci-theme-argon-mod,luci-theme-argon,luci-theme-design,luci-theme-material,luci-theme-netgear}
+echo "luci/themes中的主题有：luci-theme-argon-mod,luci-theme-argon,luci-theme-bootstrap,luci-theme-design,luci-theme-material,luci-theme-netgear"
+echo "保留主题：luci-theme-bootstrap"
+
+#删除theme1中多余的主题和插件
+rm -rf ${HOME_PATH}feeds/danshui2/{luci-app-advancedplus,luci-app-argon-config,luci-app-design-config,luci-app-netkeeper-interception,luci-app-smartdns,luci-theme-argon,luci-theme-darkmatter,luci-theme-design,luci-theme-ifit,luci-theme-kucat,luci-theme-opentopd,relevance}
+echo "luci/themes中的主题有：luci-theme-argon-mod,luci-theme-argon,luci-theme-bootstrap,luci-theme-design,luci-theme-material,luci-theme-netgear"
+echo "删除theme1中多余的主题和插件..."
+
 
 case "${SOURCE_CODE}" in
 COOLSNOWWOLF)
