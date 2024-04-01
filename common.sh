@@ -315,14 +315,15 @@ src-git danshui1 https://github.com/281677160/openwrt-package.git;${SOURCE}
 src-git helloworld https://github.com/fw876/helloworld.git
 src-git passwall3 https://github.com/xiaorouji/openwrt-passwall-packages;main
 #src-git argon https://github.com/jerrykuku/luci-theme-argon;master
+src-git danshui2 https://github.com/zhtcl/openwrt-package.git;Theme1
 EOF
 ./scripts/feeds update -a
-echo "ok0"
-if [[ -f "${HOME_PATH}/feeds/luci/modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json" ]]; then
-  echo "src-git danshui2 https://github.com/zhtcl/openwrt-package.git;Theme2" >> "feeds.conf.default"
-else
-  echo "src-git danshui2 https://github.com/zhtcl/openwrt-package.git;Theme1" >> "feeds.conf.default"
-fi
+
+#if [[ -f "${HOME_PATH}/feeds/luci/modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json" ]]; then
+#  echo "src-git danshui2 https://github.com/zhtcl/openwrt-package.git;Theme2" >> "feeds.conf.default"
+#else
+#  echo "src-git danshui2 https://github.com/zhtcl/openwrt-package.git;Theme1" >> "feeds.conf.default"
+#fi
 #small-package中要删除的插件
 z="luci-app-openclash,*luci-app-passwall*,luci-app-passwall,luci-app-passwall2,luci-app-ssr-plus, \
 #adguardhome,luci-app-adguardhome,mosdns,luci-app-mosdns,\
