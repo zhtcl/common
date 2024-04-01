@@ -312,8 +312,8 @@ mv -f uniq.conf feeds.conf.default
 cat >>"feeds.conf.default" <<-EOF
 src-git smpackage https://github.com/kenzok8/small-package;main
 #src-git danshui1 https://github.com/281677160/openwrt-package.git;${SOURCE}
-#src-git helloworld https://github.com/fw876/helloworld.git
-#src-git passwall3 https://github.com/xiaorouji/openwrt-passwall-packages;main
+src-git helloworld https://github.com/fw876/helloworld.git
+src-git passwall3 https://github.com/xiaorouji/openwrt-passwall-packages;main
 #src-git argon https://github.com/jerrykuku/luci-theme-argon;master
 src-git danshui2 https://github.com/zhtcl/openwrt-package.git;Theme1
 EOF
@@ -327,16 +327,17 @@ EOF
 
 #small-package中要删除的插件
 echo "oka"
-z="luci-theme-argone*,*luci-app-argone-config*,*luci-theme-Butterfly*,*luci-theme-netgear*,*luci-theme-atmaterial*, \
+z="luci-app-openclash,*luci-app-passwall*,luci-app-passwall,luci-app-passwall2,luci-app-ssr-plus, \
+luci-theme-argone*,*luci-app-argone-config*,*luci-theme-Butterfly*,*luci-theme-netgear*,*luci-theme-atmaterial*, \
 luci-theme-rosy,luci-theme-darkmatter,luci-theme-infinityfreedom,luci-theme-design,luci-app-design-config, \
 luci-theme-bootstrap-mod,luci-theme-freifunk-generic,luci-theme-opentomato,luci-theme-kucat"
-#luci-app-openclash,*luci-app-passwall*,luci-app-passwall,luci-app-passwall2,luci-app-ssr-plus
-echo "删除small-package重复的主题..."
+echo "删除small-package重复的主题、Openclash、Passwall和SSR Plus..."
 t=(${z//,/ })
 for x in ${t[@]}; do \
   find . -type d -name "${x}" |grep -v 'danshui' |xargs -i rm -rf {}; \
 done
 
+#删除small-package与源码冲突的插件
 rm -rf ${HOME_PATH}feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd-alt,miniupnpd-iptables,wireless-regdb}
 echo "删除small-package与源码冲突的插件..."
 
@@ -347,12 +348,12 @@ COOLSNOWWOLF)
 #  for i in ${c[@]}; do \
 #    find . -type d -name "${i}" |grep -v |xargs -i rm -rf {}; \
 #  done
-echo "ok1"
+
   if [[ -d "${HOME_PATH}/build/common/Share/btrfs-progs" ]]; then
     rm -rf ${HOME_PATH}/feeds/packages/utils/btrfs-progs
     cp -Rf ${HOME_PATH}/build/common/Share/btrfs-progs ${HOME_PATH}/feeds/packages/utils/btrfs-progs
   fi
-echo "ok2"
+
 ;;
 LIENOL)
   s="mentohust,aliyundrive-webdav,pdnsd-alt,mt"
@@ -480,9 +481,9 @@ XWRT)
 ;;
 esac
 
-#for X in $(ls -1 "${HOME_PATH}/feeds/passwall3"); do
-#  find . -type d -name "${X}" |grep -v 'danshui\|passwall3' |xargs -i rm -rf {}
-#done
+for X in $(ls -1 "${HOME_PATH}/feeds/passwall3"); do
+  find . -type d -name "${X}" |grep -v 'danshui\|passwall3' |xargs -i rm -rf {}
+done
 # 更换golang版本
 rm -rf ${HOME_PATH}/feeds/packages/lang/golang
 git clone https://github.com/sbwml/packages_lang_golang -b 22.x ${HOME_PATH}/feeds/packages/lang/golang
@@ -776,26 +777,26 @@ source $BUILD_PATH/$DIY_PART_SH
 cd ${HOME_PATH}
 
 ## passwall
-#find . -type d -name '*luci-app-passwall*' -o -name 'passwall1' -o -name 'passwall2' | xargs -i rm -rf {}
-#sed -i '/passwall.git\;luci/d; /passwall2/d' "feeds.conf.default"
-#if [[ "${PassWall_luci_branch}" == "1" ]]; then
-#  echo "src-git passwall1 https://github.com/xiaorouji/openwrt-passwall.git;luci-smartdns-dev" >> "feeds.conf.default"
-#  echo "src-git passwall2 https://github.com/xiaorouji/openwrt-passwall2.git;main" >> "feeds.conf.default"
-#else
-#  echo "src-git passwall1 https://github.com/xiaorouji/openwrt-passwall.git;main" >> "feeds.conf.default"
-#  echo "src-git passwall2 https://github.com/xiaorouji/openwrt-passwall2.git;main" >> "feeds.conf.default"
-#fi
+find . -type d -name '*luci-app-passwall*' -o -name 'passwall1' -o -name 'passwall2' | xargs -i rm -rf {}
+sed -i '/passwall.git\;luci/d; /passwall2/d' "feeds.conf.default"
+if [[ "${PassWall_luci_branch}" == "1" ]]; then
+  echo "src-git passwall1 https://github.com/xiaorouji/openwrt-passwall.git;luci-smartdns-dev" >> "feeds.conf.default"
+  echo "src-git passwall2 https://github.com/xiaorouji/openwrt-passwall2.git;main" >> "feeds.conf.default"
+else
+  echo "src-git passwall1 https://github.com/xiaorouji/openwrt-passwall.git;main" >> "feeds.conf.default"
+  echo "src-git passwall2 https://github.com/xiaorouji/openwrt-passwall2.git;main" >> "feeds.conf.default"
+fi
 
 ## openclash
-#find . -type d -name '*luci-app-openclash*' -o -name '*OpenClash*' | xargs -i rm -rf {}
-#sed -i '/OpenClash/d' "feeds.conf.default"
-#if [[ "${OpenClash_branch}" == "1" ]]; then
-#  echo "src-git OpenClash https://github.com/vernesong/OpenClash.git;dev" >> "feeds.conf.default"
-#  echo "OpenClash_branch=dev" >> ${GITHUB_ENV}
-#else
-#  echo "src-git OpenClash https://github.com/vernesong/OpenClash.git;master" >> "feeds.conf.default"
-#  echo "OpenClash_branch=master" >> ${GITHUB_ENV}
-#fi
+find . -type d -name '*luci-app-openclash*' -o -name '*OpenClash*' | xargs -i rm -rf {}
+sed -i '/OpenClash/d' "feeds.conf.default"
+if [[ "${OpenClash_branch}" == "1" ]]; then
+  echo "src-git OpenClash https://github.com/vernesong/OpenClash.git;dev" >> "feeds.conf.default"
+  echo "OpenClash_branch=dev" >> ${GITHUB_ENV}
+else
+  echo "src-git OpenClash https://github.com/vernesong/OpenClash.git;master" >> "feeds.conf.default"
+  echo "OpenClash_branch=master" >> ${GITHUB_ENV}
+fi
 
 cat feeds.conf.default|awk '!/^#/'|awk '!/^$/'|awk '!a[$1" "$2]++{print}' >uniq.conf
 mv -f uniq.conf feeds.conf.default
@@ -1127,7 +1128,7 @@ fi
 function Diy_feeds() {
 echo "正在执行：安装feeds,请耐心等待..."
 cd ${HOME_PATH}
-./scripts/feeds install -a
+./scripts/feeds install -f
 
 if [[ ! -f "${HOME_PATH}/staging_dir/host/bin/upx" ]]; then
   cp -Rf /usr/bin/upx ${HOME_PATH}/staging_dir/host/bin/upx
@@ -1195,12 +1196,12 @@ fi
 if [[ "${Disable_autosamba}" == "1" ]]; then
 sed -i '/luci-i18n-samba/d; /PACKAGE_samba/d; /SAMBA_MAX/d; /SAMBA4_SERVER/d' "${HOME_PATH}/.config"
 echo '
-# CONFIG_PACKAGE_autosamba is not set
-# CONFIG_PACKAGE_luci-app-samba is not set
-# CONFIG_PACKAGE_luci-app-samba4 is not set
-# CONFIG_PACKAGE_samba36-server is not set
-# CONFIG_PACKAGE_samba4-libs is not set
-# CONFIG_PACKAGE_samba4-server is not set
+ CONFIG_PACKAGE_autosamba is not set
+ CONFIG_PACKAGE_luci-app-samba is not set
+ CONFIG_PACKAGE_luci-app-samba4 is not set
+ CONFIG_PACKAGE_samba36-server is not set
+ CONFIG_PACKAGE_samba4-libs is not set
+ CONFIG_PACKAGE_samba4-server is not set
 ' >> ${HOME_PATH}/.config
 else
 sed -i '/luci-app-samba/d; /CONFIG_PACKAGE_samba/d' "${HOME_PATH}/.config"
