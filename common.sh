@@ -312,8 +312,8 @@ mv -f uniq.conf feeds.conf.default
 cat >>"feeds.conf.default" <<-EOF
 src-git smpackage https://github.com/kenzok8/small-package;main
 #src-git danshui1 https://github.com/281677160/openwrt-package.git;${SOURCE}
-src-git helloworld https://github.com/fw876/helloworld.git
-src-git passwall3 https://github.com/xiaorouji/openwrt-passwall-packages;main
+#src-git helloworld https://github.com/fw876/helloworld.git
+#src-git passwall3 https://github.com/xiaorouji/openwrt-passwall-packages;main
 #src-git argon https://github.com/jerrykuku/luci-theme-argon;master
 src-git danshui2 https://github.com/zhtcl/openwrt-package.git;Theme1
 EOF
@@ -327,8 +327,8 @@ EOF
 
 #small-package中要删除的插件
 echo "oka"
-z="luci-app-openclash,*luci-app-passwall*,luci-app-passwall,luci-app-passwall2,luci-app-ssr-plus, \
-luci-theme-argone*,*luci-app-argone-config*,*luci-theme-Butterfly*,*luci-theme-netgear*,*luci-theme-atmaterial*, \
+#luci-app-openclash,*luci-app-passwall*,luci-app-passwall,luci-app-passwall2,luci-app-ssr-plus, \
+z="luci-theme-argone*,*luci-app-argone-config*,*luci-theme-Butterfly*,*luci-theme-netgear*,*luci-theme-atmaterial*, \
 luci-theme-rosy,luci-theme-darkmatter,luci-theme-infinityfreedom,luci-theme-design,luci-app-design-config, \
 luci-theme-bootstrap-mod,luci-theme-freifunk-generic,luci-theme-opentomato,luci-theme-kucat"
 echo "删除small-package重复的主题、Openclash、Passwall和SSR Plus..."
@@ -338,7 +338,7 @@ for x in ${t[@]}; do \
 done
 
 #删除small-package与源码冲突的插件
-rm -rf ${HOME_PATH}feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd-alt,miniupnpd-iptables,wireless-regdb}
+# rm -rf ${HOME_PATH}feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd-alt,miniupnpd-iptables,wireless-regdb}
 echo "删除small-package与源码冲突的插件..."
 
 case "${SOURCE_CODE}" in
@@ -690,8 +690,8 @@ TIME r ""
 function Diy_COOLSNOWWOLF() {
 cd ${HOME_PATH}
 # 升级node版本
-#rm -rf ${HOME_PATH}/feeds/packages/lang/node
-#git clone https://github.com/sbwml/feeds_packages_lang_node-prebuilt -b packages-23.05 ${HOME_PATH}/feeds/packages/lang/node
+rm -rf ${HOME_PATH}/feeds/packages/lang/node
+git clone https://github.com/sbwml/feeds_packages_lang_node-prebuilt -b packages-23.05 ${HOME_PATH}/feeds/packages/lang/node
 # 降低aliyundrive-webdav版本,新版本编译不成功
 #if [[ -f "${HOME_PATH}/feeds/packages/multimedia/aliyundrive-webdav/Makefile" ]]; then
 #  curl -fsSL https://raw.githubusercontent.com/coolsnowwolf/packages/aea60b5432fad984c0a4013bad0f0c5e00dcd115/multimedia/aliyundrive-webdav/Makefile  -o ${HOME_PATH}/feeds/packages/multimedia/aliyundrive-webdav/Makefile 
@@ -777,26 +777,26 @@ source $BUILD_PATH/$DIY_PART_SH
 cd ${HOME_PATH}
 
 ## passwall
-find . -type d -name '*luci-app-passwall*' -o -name 'passwall1' -o -name 'passwall2' | xargs -i rm -rf {}
-sed -i '/passwall.git\;luci/d; /passwall2/d' "feeds.conf.default"
-if [[ "${PassWall_luci_branch}" == "1" ]]; then
-  echo "src-git passwall1 https://github.com/xiaorouji/openwrt-passwall.git;luci-smartdns-dev" >> "feeds.conf.default"
-  echo "src-git passwall2 https://github.com/xiaorouji/openwrt-passwall2.git;main" >> "feeds.conf.default"
-else
-  echo "src-git passwall1 https://github.com/xiaorouji/openwrt-passwall.git;main" >> "feeds.conf.default"
-  echo "src-git passwall2 https://github.com/xiaorouji/openwrt-passwall2.git;main" >> "feeds.conf.default"
-fi
+#find . -type d -name '*luci-app-passwall*' -o -name 'passwall1' -o -name 'passwall2' | xargs -i rm -rf {}
+#sed -i '/passwall.git\;luci/d; /passwall2/d' "feeds.conf.default"
+#if [[ "${PassWall_luci_branch}" == "1" ]]; then
+#  echo "src-git passwall1 https://github.com/xiaorouji/openwrt-passwall.git;luci-smartdns-dev" >> "feeds.conf.default"
+#  echo "src-git passwall2 https://github.com/xiaorouji/openwrt-passwall2.git;main" >> "feeds.conf.default"
+#else
+#  echo "src-git passwall1 https://github.com/xiaorouji/openwrt-passwall.git;main" >> "feeds.conf.default"
+#  echo "src-git passwall2 https://github.com/xiaorouji/openwrt-passwall2.git;main" >> "feeds.conf.default"
+#fi
 
 ## openclash
-find . -type d -name '*luci-app-openclash*' -o -name '*OpenClash*' | xargs -i rm -rf {}
-sed -i '/OpenClash/d' "feeds.conf.default"
-if [[ "${OpenClash_branch}" == "1" ]]; then
-  echo "src-git OpenClash https://github.com/vernesong/OpenClash.git;dev" >> "feeds.conf.default"
-  echo "OpenClash_branch=dev" >> ${GITHUB_ENV}
-else
-  echo "src-git OpenClash https://github.com/vernesong/OpenClash.git;master" >> "feeds.conf.default"
-  echo "OpenClash_branch=master" >> ${GITHUB_ENV}
-fi
+#find . -type d -name '*luci-app-openclash*' -o -name '*OpenClash*' | xargs -i rm -rf {}
+#sed -i '/OpenClash/d' "feeds.conf.default"
+#if [[ "${OpenClash_branch}" == "1" ]]; then
+#  echo "src-git OpenClash https://github.com/vernesong/OpenClash.git;dev" >> "feeds.conf.default"
+#  echo "OpenClash_branch=dev" >> ${GITHUB_ENV}
+#else
+#  echo "src-git OpenClash https://github.com/vernesong/OpenClash.git;master" >> "feeds.conf.default"
+#  echo "OpenClash_branch=master" >> ${GITHUB_ENV}
+#fi
 
 cat feeds.conf.default|awk '!/^#/'|awk '!/^$/'|awk '!a[$1" "$2]++{print}' >uniq.conf
 mv -f uniq.conf feeds.conf.default
