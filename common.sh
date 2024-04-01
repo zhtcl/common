@@ -310,10 +310,10 @@ mv -f uniq.conf feeds.conf.default
 
 # 这里增加了源,要对应的删除/etc/opkg/distfeeds.conf插件源
 cat >>"feeds.conf.default" <<-EOF
-src-git kenzo https://github.com/kenzok8/small-package;main
+src-git smpackage https://github.com/kenzok8/small-package;main
 #src-git danshui1 https://github.com/281677160/openwrt-package.git;${SOURCE}
-src-git helloworld https://github.com/fw876/helloworld.git
-src-git passwall3 https://github.com/xiaorouji/openwrt-passwall-packages;main
+#src-git helloworld https://github.com/fw876/helloworld.git
+#src-git passwall3 https://github.com/xiaorouji/openwrt-passwall-packages;main
 #src-git argon https://github.com/jerrykuku/luci-theme-argon;master
 src-git danshui2 https://github.com/zhtcl/openwrt-package.git;Theme1
 EOF
@@ -325,43 +325,28 @@ EOF
 #  echo "src-git danshui2 https://github.com/zhtcl/openwrt-package.git;Theme1" >> "feeds.conf.default"
 #fi
 
-#adguardhome,luci-app-adguardhome,mosdns,luci-app-mosdns,\
-#luci-app-clouddrive2,luci-app-chinesesubfinder,luci-app-bmtedge,miniupnpd,luci-app-torbp"
-#luci-app-eqos,luci-app-wol, \
-#luci-app-gost,gost,luci-app-wizard,luci-app-msd_lite,msd_lite, \
-#lua-maxminddb,v2dat,v2ray-geodata, \
-######
 #small-package中要删除的插件
 echo "oka"
-z="luci-app-openclash,*luci-app-passwall*,luci-app-passwall,luci-app-passwall2,luci-app-ssr-plus, \
-luci-theme-argone*,*luci-app-argone-config*,*luci-theme-Butterfly*,*luci-theme-netgear*,*luci-theme-atmaterial*, \
+z="luci-theme-argone*,*luci-app-argone-config*,*luci-theme-Butterfly*,*luci-theme-netgear*,*luci-theme-atmaterial*, \
+#luci-app-openclash,*luci-app-passwall*,luci-app-passwall,luci-app-passwall2,luci-app-ssr-plus, \
 luci-theme-rosy,luci-theme-darkmatter,luci-theme-infinityfreedom,luci-theme-design,luci-app-design-config, \
 luci-theme-bootstrap-mod,luci-theme-freifunk-generic,luci-theme-opentomato,luci-theme-kucat"
 echo "okb"
 t=(${z//,/ })
 for x in ${t[@]}; do \
-  find . -type d -name "${x}" |grep -v 'danshui\|freifunk\|helloworld\|passwall3' |xargs -i rm -rf {}; \
+  find . -type d -name "${x}" |grep -v 'danshui' |xargs -i rm -rf {}; \
 done
-echo "okc"
-#####
 
-##281677160/openwrt-package中要删除的插件
-#z="*luci-app-wolplus,luci-app-wifidog,luci-app-unblockneteasemusic,luci-app-udp2raw,luci-app-ttnode,luci-app-tencentddns,luci-app-tcpdump,luci-app-syncthing,luci-app-switch-lan-play,luci-app-supervisord,luci-app-store,luci-app-ssr-mudb-server,luci-app-socat,luci-app-smartinfo,luci-app-shutdown,luci-app-rclone,luci-app-quickstart,luci-app-pppoe-server,luci-app-poweroff,luci-app-partexp,luci-app-oscam,luci-app-onliner,luci-app-oled,luci-app-oaf,luci-app-nodogsplash,luci-app-nginx-pingos,luci-app-nginx-manager,luci-app-natter,luci-app-msd_lite,luci-app-mosdns,luci-app-lucky,luci-app-linkease,luci-app-istorex,luci-app-iptvhelper,luci-app-ikoolproxy,luci-app-gost,luci-app-filebrowser,luci-app-fileassistant,luci-app-eqosplus,luci-app-ddnsto,luci-app-ddns-go,luci-app-cupsd,luci-app-cpulimit,luci-app-control-weburl,luci-app-control-webrestriction,luci-app-control-timewol,luci-app-cloudflarespeedtest,luci-app-clash,luci-app-chinadns-ng,luci-app-chatgpt,luci-app-autotimeset,luci-app-autoipsetadder,luci-app-amlogic,luci-app-alist,luci-app-advanced,luci-app-adguardhome,luci-app-3ginfo, \
-#luci-app-smartdns,smartdns,*luci-theme-argon*,*luci-app-argon-config*,adguardhome,alist,chinadns-ng,cpulimit,ddns-go,filebrowser,gost,iptvhelper,lua-maxminddb,luci-lib-iform,lucky,msd_lite,natter,oaf,open-app-filter,oscam,udp2raw,upx-static,v2dat,v2ray-geodata"
-#t=(${z//,/ })
-#echo "okb"
-#for x in ${t[@]}; do \
-#  find . -type d -name "${x}" |grep -v 'kenzo\|helloworld\|passwall3' |xargs -i rm -rf {}; \
-#  echo "okc"
-#done
+rm -rf ${HOME_PATH}feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd-alt,miniupnpd-iptables,wireless-regdb}
+echo "okc"
 
 case "${SOURCE_CODE}" in
 COOLSNOWWOLF)
-  s="mentohust"
-  c=(${s//,/ })
-  for i in ${c[@]}; do \
-    find . -type d -name "${i}" |grep -v |xargs -i rm -rf {}; \
-  done
+#  s="mentohust"
+#  c=(${s//,/ })
+#  for i in ${c[@]}; do \
+#    find . -type d -name "${i}" |grep -v |xargs -i rm -rf {}; \
+#  done
 echo "ok1"
   if [[ -d "${HOME_PATH}/build/common/Share/btrfs-progs" ]]; then
     rm -rf ${HOME_PATH}/feeds/packages/utils/btrfs-progs
@@ -790,27 +775,27 @@ cd ${HOME_PATH}
 source $BUILD_PATH/$DIY_PART_SH
 cd ${HOME_PATH}
 
-# passwall
-find . -type d -name '*luci-app-passwall*' -o -name 'passwall1' -o -name 'passwall2' | xargs -i rm -rf {}
-sed -i '/passwall.git\;luci/d; /passwall2/d' "feeds.conf.default"
-if [[ "${PassWall_luci_branch}" == "1" ]]; then
-  echo "src-git passwall1 https://github.com/xiaorouji/openwrt-passwall.git;luci-smartdns-dev" >> "feeds.conf.default"
-  echo "src-git passwall2 https://github.com/xiaorouji/openwrt-passwall2.git;main" >> "feeds.conf.default"
-else
-  echo "src-git passwall1 https://github.com/xiaorouji/openwrt-passwall.git;main" >> "feeds.conf.default"
-  echo "src-git passwall2 https://github.com/xiaorouji/openwrt-passwall2.git;main" >> "feeds.conf.default"
-fi
+## passwall
+#find . -type d -name '*luci-app-passwall*' -o -name 'passwall1' -o -name 'passwall2' | xargs -i rm -rf {}
+#sed -i '/passwall.git\;luci/d; /passwall2/d' "feeds.conf.default"
+#if [[ "${PassWall_luci_branch}" == "1" ]]; then
+#  echo "src-git passwall1 https://github.com/xiaorouji/openwrt-passwall.git;luci-smartdns-dev" >> "feeds.conf.default"
+#  echo "src-git passwall2 https://github.com/xiaorouji/openwrt-passwall2.git;main" >> "feeds.conf.default"
+#else
+#  echo "src-git passwall1 https://github.com/xiaorouji/openwrt-passwall.git;main" >> "feeds.conf.default"
+#  echo "src-git passwall2 https://github.com/xiaorouji/openwrt-passwall2.git;main" >> "feeds.conf.default"
+#fi
 
-# openclash
-find . -type d -name '*luci-app-openclash*' -o -name '*OpenClash*' | xargs -i rm -rf {}
-sed -i '/OpenClash/d' "feeds.conf.default"
-if [[ "${OpenClash_branch}" == "1" ]]; then
-  echo "src-git OpenClash https://github.com/vernesong/OpenClash.git;dev" >> "feeds.conf.default"
-  echo "OpenClash_branch=dev" >> ${GITHUB_ENV}
-else
-  echo "src-git OpenClash https://github.com/vernesong/OpenClash.git;master" >> "feeds.conf.default"
-  echo "OpenClash_branch=master" >> ${GITHUB_ENV}
-fi
+## openclash
+#find . -type d -name '*luci-app-openclash*' -o -name '*OpenClash*' | xargs -i rm -rf {}
+#sed -i '/OpenClash/d' "feeds.conf.default"
+#if [[ "${OpenClash_branch}" == "1" ]]; then
+#  echo "src-git OpenClash https://github.com/vernesong/OpenClash.git;dev" >> "feeds.conf.default"
+#  echo "OpenClash_branch=dev" >> ${GITHUB_ENV}
+#else
+#  echo "src-git OpenClash https://github.com/vernesong/OpenClash.git;master" >> "feeds.conf.default"
+#  echo "OpenClash_branch=master" >> ${GITHUB_ENV}
+#fi
 
 cat feeds.conf.default|awk '!/^#/'|awk '!/^$/'|awk '!a[$1" "$2]++{print}' >uniq.conf
 mv -f uniq.conf feeds.conf.default
