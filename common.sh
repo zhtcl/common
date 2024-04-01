@@ -328,17 +328,17 @@ EOF
 #small-package中要删除的插件
 echo "oka"
 z="luci-theme-argone*,*luci-app-argone-config*,*luci-theme-Butterfly*,*luci-theme-netgear*,*luci-theme-atmaterial*, \
-#luci-app-openclash,*luci-app-passwall*,luci-app-passwall,luci-app-passwall2,luci-app-ssr-plus, \
 luci-theme-rosy,luci-theme-darkmatter,luci-theme-infinityfreedom,luci-theme-design,luci-app-design-config, \
 luci-theme-bootstrap-mod,luci-theme-freifunk-generic,luci-theme-opentomato,luci-theme-kucat"
-echo "okb"
+#luci-app-openclash,*luci-app-passwall*,luci-app-passwall,luci-app-passwall2,luci-app-ssr-plus
+echo "删除small-package重复的主题..."
 t=(${z//,/ })
 for x in ${t[@]}; do \
   find . -type d -name "${x}" |grep -v 'danshui' |xargs -i rm -rf {}; \
 done
 
 rm -rf ${HOME_PATH}feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd-alt,miniupnpd-iptables,wireless-regdb}
-echo "okc"
+echo "删除small-package与源码冲突的插件..."
 
 case "${SOURCE_CODE}" in
 COOLSNOWWOLF)
@@ -480,27 +480,27 @@ XWRT)
 ;;
 esac
 
-for X in $(ls -1 "${HOME_PATH}/feeds/passwall3"); do
-  find . -type d -name "${X}" |grep -v 'danshui\|passwall3' |xargs -i rm -rf {}
-done
+#for X in $(ls -1 "${HOME_PATH}/feeds/passwall3"); do
+#  find . -type d -name "${X}" |grep -v 'danshui\|passwall3' |xargs -i rm -rf {}
+#done
 # 更换golang版本
 rm -rf ${HOME_PATH}/feeds/packages/lang/golang
 git clone https://github.com/sbwml/packages_lang_golang -b 22.x ${HOME_PATH}/feeds/packages/lang/golang
 
-if [[ -d "${HOME_PATH}/feeds/danshui1/relevance/shadowsocks-libev" ]]; then
-  rm -rf ${HOME_PATH}/feeds/packages/net/shadowsocks-libev
-  mv -f feeds/danshui1/relevance/shadowsocks-libev ${HOME_PATH}/feeds/packages/net/shadowsocks-libev
-fi
-if [[ -d "${HOME_PATH}/feeds/danshui1/relevance/kcptun" ]]; then
-  rm -rf ${HOME_PATH}/feeds/packages/net/kcptun
-  mv -f ${HOME_PATH}/feeds/danshui1/relevance/kcptun ${HOME_PATH}/feeds/packages/net/kcptun
-fi
+#if [[ -d "${HOME_PATH}/feeds/danshui1/relevance/shadowsocks-libev" ]]; then
+#  rm -rf ${HOME_PATH}/feeds/packages/net/shadowsocks-libev
+#  mv -f feeds/danshui1/relevance/shadowsocks-libev ${HOME_PATH}/feeds/packages/net/shadowsocks-libev
+#fi
+#if [[ -d "${HOME_PATH}/feeds/danshui1/relevance/kcptun" ]]; then
+#  rm -rf ${HOME_PATH}/feeds/packages/net/kcptun
+#  mv -f ${HOME_PATH}/feeds/danshui1/relevance/kcptun ${HOME_PATH}/feeds/packages/net/kcptun
+#fi
 
-if [[ ! -d "${HOME_PATH}/feeds/packages/lang/rust" ]]; then
-  cp -Rf ${HOME_PATH}/build/common/Share/rust ${HOME_PATH}/feeds/packages/lang/rust
-fi
+#if [[ ! -d "${HOME_PATH}/feeds/packages/lang/rust" ]]; then
+#  cp -Rf ${HOME_PATH}/build/common/Share/rust ${HOME_PATH}/feeds/packages/lang/rust
+#fi
 
-[[ ! -d "${HOME_PATH}/feeds/packages/devel/packr" ]] && cp -Rf ${HOME_PATH}/build/common/Share/packr ${HOME_PATH}/feeds/packages/devel/packr
+#[[ ! -d "${HOME_PATH}/feeds/packages/devel/packr" ]] && cp -Rf ${HOME_PATH}/build/common/Share/packr ${HOME_PATH}/feeds/packages/devel/packr
 ./scripts/feeds update danshui2
 
 cp -Rf ${HOME_PATH}/feeds.conf.default ${HOME_PATH}/LICENSES/doc/uniq.conf
@@ -692,9 +692,9 @@ cd ${HOME_PATH}
 rm -rf ${HOME_PATH}/feeds/packages/lang/node
 git clone https://github.com/sbwml/feeds_packages_lang_node-prebuilt -b packages-23.05 ${HOME_PATH}/feeds/packages/lang/node
 # 降低aliyundrive-webdav版本,新版本编译不成功
-if [[ -f "${HOME_PATH}/feeds/packages/multimedia/aliyundrive-webdav/Makefile" ]]; then
-  curl -fsSL https://raw.githubusercontent.com/coolsnowwolf/packages/aea60b5432fad984c0a4013bad0f0c5e00dcd115/multimedia/aliyundrive-webdav/Makefile  -o ${HOME_PATH}/feeds/packages/multimedia/aliyundrive-webdav/Makefile 
-fi
+#if [[ -f "${HOME_PATH}/feeds/packages/multimedia/aliyundrive-webdav/Makefile" ]]; then
+#  curl -fsSL https://raw.githubusercontent.com/coolsnowwolf/packages/aea60b5432fad984c0a4013bad0f0c5e00dcd115/multimedia/aliyundrive-webdav/Makefile  -o ${HOME_PATH}/feeds/packages/multimedia/aliyundrive-webdav/Makefile 
+#fi
 }
 
 
@@ -1127,7 +1127,7 @@ fi
 function Diy_feeds() {
 echo "正在执行：安装feeds,请耐心等待..."
 cd ${HOME_PATH}
-./scripts/feeds install -f
+./scripts/feeds install -a
 
 if [[ ! -f "${HOME_PATH}/staging_dir/host/bin/upx" ]]; then
   cp -Rf /usr/bin/upx ${HOME_PATH}/staging_dir/host/bin/upx
@@ -1215,6 +1215,7 @@ EOF
 
 # 由firewall3功换至firewall4
 sed -i 's/+firewall/+uci-firewall/g' ${HOME_PATH}/feeds/luci/applications/luci-app-firewall/Makefile
+echo "由firewall3功换至firewall4完成"
 }
 
 function Diy_prevent() {
