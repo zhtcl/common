@@ -325,7 +325,7 @@ EOF
 #fi
 #small-package中要删除的插件
 z="luci-app-openclash,*luci-app-passwall*,luci-app-passwall,luci-app-passwall2,luci-app-ssr-plus, \
-luci-app-smartdns,smartdns,adguardhome,luci-app-adguardhome,mosdns,luci-app-mosdns,\
+#luci-app-smartdns,smartdns,adguardhome,luci-app-adguardhome,mosdns,luci-app-mosdns,\
 luci-app-clouddrive2,luci-app-chinesesubfinder,luci-app-bmtedge,miniupnpd,luci-app-torbp"
 #luci-app-eqos,,luci-app-wol, \
 #luci-app-gost,gost,luci-app-wizard,luci-app-msd_lite,msd_lite, \
