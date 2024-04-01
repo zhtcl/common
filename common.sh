@@ -352,11 +352,13 @@ COOLSNOWWOLF)
   for i in ${c[@]}; do \
     find . -type d -name "${i}" |grep -v |xargs -i rm -rf {}; \
   done
+echo "ok1"
   if [[ -d "${HOME_PATH}/build/common/Share/btrfs-progs" ]]; then
     rm -rf ${HOME_PATH}/feeds/packages/utils/btrfs-progs
     cp -Rf ${HOME_PATH}/build/common/Share/btrfs-progs ${HOME_PATH}/feeds/packages/utils/btrfs-progs
   fi
 ;;
+echo "ok2"
 LIENOL)
   s="mentohust,aliyundrive-webdav,pdnsd-alt,mt"
   c=(${s//,/ })
@@ -483,9 +485,9 @@ XWRT)
 ;;
 esac
 
-#for X in $(ls -1 "${HOME_PATH}/feeds/passwall3"); do
-#  find . -type d -name "${X}" |grep -v 'danshui\|passwall3' |xargs -i rm -rf {}
-#done
+for X in $(ls -1 "${HOME_PATH}/feeds/passwall3"); do
+  find . -type d -name "${X}" |grep -v 'danshui\|passwall3' |xargs -i rm -rf {}
+done
 # 更换golang版本
 rm -rf ${HOME_PATH}/feeds/packages/lang/golang
 git clone https://github.com/sbwml/packages_lang_golang -b 22.x ${HOME_PATH}/feeds/packages/lang/golang
