@@ -335,6 +335,7 @@ luci-app-clouddrive2,luci-app-chinesesubfinder,luci-app-bmtedge,miniupnpd,luci-a
 #luci-app-gost,gost,luci-app-wizard,luci-app-msd_lite,msd_lite, \
 #lua-maxminddb,v2dat,v2ray-geodata, \
 t=(${z//,/ })
+echo "ok0"
 for x in ${t[@]}; do \
   find . -type d -name "${x}" |grep -v 'danshui\|freifunk\|helloworld\|passwall3' |xargs -i rm -rf {}; \
 done
