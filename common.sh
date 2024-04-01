@@ -335,16 +335,16 @@ for x in ${t[@]}; do \
 done
 
 #删除small-package与源码冲突的插件
-rm -rf ${HOME_PATH}feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd-alt,miniupnpd-iptables,wireless-regdb}
+rm -rf ${HOME_PATH}/feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd-alt,miniupnpd-iptables,wireless-regdb}
 echo "删除small-package与源码冲突的插件..."
 
 #删除luci/themes多余的主题
-rm -rf ${HOME_PATH}feeds/luci/themes/{luci-theme-argon-mod,luci-theme-argon,luci-theme-design,luci-theme-material,luci-theme-netgear}
+rm -rf ${HOME_PATH}/feeds/luci/themes/{luci-theme-argon-mod,luci-theme-argon,luci-theme-design,luci-theme-material,luci-theme-netgear}
 echo "luci/themes中的主题有：luci-theme-argon-mod,luci-theme-argon,luci-theme-bootstrap,luci-theme-design,luci-theme-material,luci-theme-netgear"
 echo "保留主题：luci-theme-bootstrap"
 
 #删除theme1中多余的主题和插件
-rm -rf ${HOME_PATH}feeds/danshui2/{luci-app-advancedplus,luci-app-argon-config,luci-app-design-config,luci-app-netkeeper-interception,luci-app-smartdns,luci-theme-argon,luci-theme-darkmatter,luci-theme-design,luci-theme-ifit,luci-theme-kucat,luci-theme-opentopd,relevance}
+rm -rf ${HOME_PATH}/feeds/danshui2/{luci-app-advancedplus,luci-app-argon-config,luci-app-design-config,luci-app-netkeeper-interception,luci-app-smartdns,luci-theme-argon,luci-theme-darkmatter,luci-theme-design,luci-theme-ifit,luci-theme-kucat,luci-theme-opentopd,relevance}
 echo "删除theme1中多余的主题和插件..."
 echo "theme1中保留的主题有：luci-theme-Butterfly,luci-theme-Butterfly-dark,luci-theme-Light,luci-theme-argon-dark-mod,luci-theme-argon-light-mod,luci-theme-bootstrap-mod"
 
