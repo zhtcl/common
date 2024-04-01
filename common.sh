@@ -345,7 +345,8 @@ luci-app-smartdns,smartdns,*luci-theme-argon*,*luci-app-argon-config*,adguardhom
 t=(${z//,/ })
 echo "okb"
 for x in ${t[@]}; do \
-  find . -type d -name "${x}" |grep -v 'kenzo|helloworld\|passwall3' |xargs -i rm -rf {}; \
+  find . -type d -name "${x}" |grep -v 'kenzo\|helloworld\|passwall3' |xargs -i rm -rf {}; \
+  echo "okc"
 done
 
 case "${SOURCE_CODE}" in
