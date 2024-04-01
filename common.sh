@@ -314,7 +314,7 @@ src-git kenzo https://github.com/kenzok8/small-package;main
 src-git danshui1 https://github.com/281677160/openwrt-package.git;${SOURCE}
 src-git helloworld https://github.com/fw876/helloworld.git
 src-git passwall3 https://github.com/xiaorouji/openwrt-passwall-packages;main
-src-git argon/luci-theme-argon https://github.com/jerrykuku/luci-theme-argon;master
+src-git argon\luci-theme-argon https://github.com/jerrykuku/luci-theme-argon;master
 EOF
 ./scripts/feeds update -a
 
