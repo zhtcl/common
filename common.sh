@@ -326,7 +326,6 @@ EOF
 #fi
 
 #small-package中要删除的插件
-echo "oka"
 #lluci-app-ssr-plus, \
 z="uci-app-openclash,*luci-app-passwall*,luci-app-passwall,luci-app-passwall2"
 echo "删除small-package中Openclash、Passwall和SSR Plus..."
@@ -346,9 +345,8 @@ echo "保留主题：luci-theme-bootstrap"
 
 #删除theme1中多余的主题和插件
 rm -rf ${HOME_PATH}feeds/danshui2/{luci-app-advancedplus,luci-app-argon-config,luci-app-design-config,luci-app-netkeeper-interception,luci-app-smartdns,luci-theme-argon,luci-theme-darkmatter,luci-theme-design,luci-theme-ifit,luci-theme-kucat,luci-theme-opentopd,relevance}
-echo "luci/themes中的主题有：luci-theme-argon-mod,luci-theme-argon,luci-theme-bootstrap,luci-theme-design,luci-theme-material,luci-theme-netgear"
 echo "删除theme1中多余的主题和插件..."
-
+echo "theme1中保留的主题有：luci-theme-Butterfly,luci-theme-Butterfly-dark,luci-theme-Light,luci-theme-argon-dark-mod,luci-theme-argon-light-mod,luci-theme-bootstrap-mod"
 
 case "${SOURCE_CODE}" in
 COOLSNOWWOLF)
