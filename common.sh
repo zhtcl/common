@@ -314,7 +314,7 @@ src-git kenzo https://github.com/kenzok8/small-package;main
 src-git danshui1 https://github.com/281677160/openwrt-package.git;${SOURCE}
 src-git helloworld https://github.com/fw876/helloworld.git
 src-git passwall3 https://github.com/xiaorouji/openwrt-passwall-packages;main
-src-git luci-theme-argon https://github.com/jerrykuku/luci-theme-argon;master
+src-git argon https://github.com/jerrykuku/luci-theme-argon;master
 EOF
 ./scripts/feeds update -a
 
@@ -332,7 +332,7 @@ luci-app-clouddrive2,luci-app-chinesesubfinder,luci-app-bmtedge,miniupnpd,luci-a
 #lua-maxminddb,v2dat,v2ray-geodata, \
 t=(${z//,/ })
 for x in ${t[@]}; do \
-  find . -type d -name "${x}" |grep -v 'danshui\|freifunk\|helloworld\|passwall3|luci-theme-argon' |xargs -i rm -rf {}; \
+  find . -type d -name "${x}" |grep -v 'danshui\|freifunk\|helloworld\|passwall3' |xargs -i rm -rf {}; \
 done
 #281677160/openwrt-package中要删除的插件
 z="*luci-theme-argone*,*luci-theme-argon*,*luci-app-argon-config*,*luci-app-argone-config*,*luci-theme-Butterfly*,*luci-theme-netgear*,*luci-theme-atmaterial*, \
@@ -342,7 +342,7 @@ luci-app-wolplus,luci-app-wifidog,luci-app-unblockneteasemusic,luci-app-udp2raw,
 *luci-theme-argon*,luci-app-smartdns,smartdns,adguardhome,alist,chinadns-ng,cpulimit,ddns-go,filebrowser,gost,iptvhelper,lua-maxminddb,luci-lib-iform,lucky,mosdns,msd_lite,natter,oaf,open-app-filter,oscam,udp2raw,upx-static,v2dat,v2ray-geodata"
 t=(${z//,/ })
 for x in ${t[@]}; do \
-  find . -type d -name "${x}" |grep -v 'kenzo\|luci-theme-argon' |xargs -i rm -rf {}; \
+  find . -type d -name "${x}" |grep -v 'kenzo' |xargs -i rm -rf {}; \
 done
 
 case "${SOURCE_CODE}" in
