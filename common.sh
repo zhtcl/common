@@ -312,9 +312,8 @@ mv -f uniq.conf feeds.conf.default
 cat >>"feeds.conf.default" <<-EOF
 src-git smpackage https://github.com/kenzok8/small-package;main
 #src-git danshui1 https://github.com/281677160/openwrt-package.git;${SOURCE}
-#src-git helloworld https://github.com/fw876/helloworld.git
+src-git helloworld https://github.com/fw876/helloworld.git
 src-git passwall3 https://github.com/xiaorouji/openwrt-passwall-packages;main
-#src-git argon https://github.com/jerrykuku/luci-theme-argon;master
 src-git danshui2 https://github.com/zhtcl/openwrt-package.git;Theme1
 EOF
 ./scripts/feeds update -a
@@ -326,8 +325,7 @@ EOF
 #fi
 
 #small-package中要删除的插件
-#lluci-app-ssr-plus, \
-z="uci-app-openclash,*luci-app-passwall*,luci-app-passwall,luci-app-passwall2"
+z="luci-app-ssr-plus,luci-app-openclash,*luci-app-passwall*,luci-app-passwall,luci-app-passwall2"
 echo "删除small-package中Openclash、Passwall和SSR Plus..."
 t=(${z//,/ })
 for x in ${t[@]}; do \
