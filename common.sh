@@ -333,7 +333,7 @@ for x in ${t[@]}; do \
 done
 
 #删除small-package与源码冲突的插件
-rm -rf ${HOME_PATH}/feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd-alt,miniupnpd-iptables,wireless-regdb,luci-theme-argon}
+rm -rf ${HOME_PATH}/feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd-alt,miniupnpd-iptables,wireless-regdb,luci-theme-argon,luci-theme-kucat,luci-theme-tomato}
 echo "删除small-package与源码冲突的插件..."
 
 #删除luci/themes多余的主题
