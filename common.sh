@@ -326,7 +326,7 @@ EOF
 
 #small-package中要删除的插件
 z="luci-app-ssr-plus,luci-app-openclash,*luci-app-passwall*,luci-app-passwall,luci-app-passwall2,adguardhome,luci-app-adguardhome"
-echo "删除small-package中Openclash、Passwall和SSR Plus..."
+echo "删除small-package中Openclash、Passwall、SSR Plus和adguardhome..."
 t=(${z//,/ })
 for x in ${t[@]}; do \
   find . -type d -name "${x}" |grep -v 'danshui' |xargs -i rm -rf {}; \
