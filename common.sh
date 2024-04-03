@@ -1223,12 +1223,12 @@ EOF
 # 由firewall3功换至firewall4
 
 rm -rf  ${HOME_PATH}/package/network/utils/nftables
-cp -Rf ${HOME_PATH}/smpackage/nftables ${HOME_PATH}/package/network/utils/nftables
+cp -Rf ${HOME_PATH}/feeds/smpackage/nftables ${HOME_PATH}/package/network/utils/nftables
 rm -rf  ${HOME_PATH}/package/libs/libnftnl
-cp -Rf ${HOME_PATH}/smpackage/libnftnl ${HOME_PATH}/package/libs/libnftnl
+cp -Rf ${HOME_PATH}/feeds/smpackage/libnftnl ${HOME_PATH}/package/libs/libnftnl
 rm -rf  ${HOME_PATH}/package/network/config/firewall*
-cp -Rf ${HOME_PATH}/smpackage/firewall ${HOME_PATH}/package/network/config/firewall
-cp -Rf ${HOME_PATH}/smpackage/firewall4 ${HOME_PATH}/package/network/config/firewall4
+cp -Rf ${HOME_PATH}/feeds/smpackage/firewall ${HOME_PATH}/package/network/config/firewall
+cp -Rf ${HOME_PATH}/feeds/smpackage/firewall4 ${HOME_PATH}/package/network/config/firewall4
 echo "firewall补丁更换完成"
 
 sed -i 's/+firewall/+uci-firewall/g' ${HOME_PATH}/feeds/luci/applications/luci-app-firewall/Makefile
