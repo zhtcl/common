@@ -1225,17 +1225,17 @@ EOF
 
 # 由firewall3功换至firewall4
 
-if [[ -d "${HOME_PATH}/feeds/smpackage/nftables" ]]; then
-rm -rf ${HOME_PATH}/package/network/utils/nftables
-cp -Rf ${HOME_PATH}/feeds/smpackage/nftables ${HOME_PATH}/package/network/utils/nftables
-rm -rf ${HOME_PATH}/feeds/smpackage/nftables
-fi
+#if [[ -d "${HOME_PATH}/feeds/smpackage/nftables" ]]; then
+#rm -rf ${HOME_PATH}/package/network/utils/nftables
+#cp -Rf ${HOME_PATH}/feeds/smpackage/nftables ${HOME_PATH}/package/network/utils/nftables
+#rm -rf ${HOME_PATH}/feeds/smpackage/nftables
+#fi
 
-if [[ -d "${HOME_PATH}/feeds/smpackage/libnftnl" ]]; then
-rm -rf  ${HOME_PATH}/package/libs/libnftnl
-cp -Rf ${HOME_PATH}/feeds/smpackage/libnftnl ${HOME_PATH}/package/libs/libnftnl
-rm -rf ${HOME_PATH}/feeds/smpackage/nftables
-fi
+#if [[ -d "${HOME_PATH}/feeds/smpackage/libnftnl" ]]; then
+#rm -rf  ${HOME_PATH}/package/libs/libnftnl
+#cp -Rf ${HOME_PATH}/feeds/smpackage/libnftnl ${HOME_PATH}/package/libs/libnftnl
+#rm -rf ${HOME_PATH}/feeds/smpackage/nftables
+#fi
 
 #if [[ -d "${HOME_PATH}/feeds/smpackage/firewall4" ]]; then
 #rm -rf  ${HOME_PATH}/package/network/config/firewall4
@@ -1244,10 +1244,10 @@ fi
 #rm -rf  ${HOME_PATH}/feeds/smpackage/firewall*
 #fi
 
-rm -rf  ${HOME_PATH}/package/network/services/fullconenat
-cp -Rf ${HOME_PATH}/feeds/smpackage/fullconenat ${HOME_PATH}/package/network/services/fullconenat
-cp -Rf ${HOME_PATH}/feeds/smpackage/fullconenat-nft ${HOME_PATH}/package/network/services/fullconenat-nft
-echo "firewall补丁更换完成"
+#rm -rf  ${HOME_PATH}/package/network/services/fullconenat
+#cp -Rf ${HOME_PATH}/feeds/smpackage/fullconenat ${HOME_PATH}/package/network/services/fullconenat
+#cp -Rf ${HOME_PATH}/feeds/smpackage/fullconenat-nft ${HOME_PATH}/package/network/services/fullconenat-nft
+#echo "firewall补丁更换完成"
 
 sed -i 's/+firewall/+uci-firewall/g' ${HOME_PATH}/feeds/luci/applications/luci-app-firewall/Makefile
 
