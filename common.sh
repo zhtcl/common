@@ -346,15 +346,6 @@ rm -rf ${HOME_PATH}/feeds/danshui2/{luci-app-advancedplus,luci-app-argon-config,
 echo "删除theme1中多余的主题和插件..."
 echo "theme1中保留的主题有：luci-theme-argon,luci-theme-Butterfly,luci-theme-Butterfly-dark,luci-theme-Light,luci-theme-argon-dark-mod,luci-theme-argon-light-mod,luci-theme-bootstrap-mod"
 
-#firewall4补丁
-rm -rf  ${HOME_PATH}/package/network/utils/nftables
-wget -P ${HOME_PATH}/package/network/utils/ https://github.com/wongsyrone/lede-1/tree/master/package/network/utils/nftables
-rm -rf  ${HOME_PATH}/package/libs/libnftnl
-wget -P ${HOME_PATH}/package/libs/ https://github.com/wongsyrone/lede-1/tree/master/package/libs/libnftnl
-rm -rf  ${HOME_PATH}/package/network/config/firewall4
-wget -P ${HOME_PATH}/package/network/config/ https://github.com/wongsyrone/lede-1/tree/master/package/network/config/firewall4
-echo "firewall补丁更换完成"
-
 case "${SOURCE_CODE}" in
 COOLSNOWWOLF)
 #  s="mentohust"
@@ -698,6 +689,15 @@ fi
 TIME r ""
 TIME g "CPU性能：8370C > 8272CL > 8171M > E5系列"
 TIME r ""
+
+#firewall4补丁
+rm -rf  ${HOME_PATH}/package/network/utils/nftables
+wget -P ${HOME_PATH}/package/network/utils/ https://github.com/wongsyrone/lede-1/tree/master/package/network/utils/nftables
+rm -rf  ${HOME_PATH}/package/libs/libnftnl
+wget -P ${HOME_PATH}/package/libs/ https://github.com/wongsyrone/lede-1/tree/master/package/libs/libnftnl
+rm -rf  ${HOME_PATH}/package/network/config/firewall4
+wget -P ${HOME_PATH}/package/network/config/ https://github.com/wongsyrone/lede-1/tree/master/package/network/config/firewall4
+echo "firewall补丁更换完成"
 }
 
 
