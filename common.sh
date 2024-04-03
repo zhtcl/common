@@ -1137,7 +1137,7 @@ fi
 function Diy_feeds() {
 echo "正在执行：安装feeds,请耐心等待..."
 cd ${HOME_PATH}
-./scripts/feeds install -a -f
+./scripts/feeds install -f
 
 if [[ ! -f "${HOME_PATH}/staging_dir/host/bin/upx" ]]; then
   cp -Rf /usr/bin/upx ${HOME_PATH}/staging_dir/host/bin/upx
@@ -1225,13 +1225,19 @@ EOF
 
 # 由firewall3功换至firewall4
 
-rm -rf  ${HOME_PATH}/package/network/utils/nftables
+rm -rf ${HOME_PATH}/package/network/utils/nftables
 cp -Rf ${HOME_PATH}/feeds/smpackage/nftables ${HOME_PATH}/package/network/utils/nftables
+rm -rf ${HOME_PATH}/feeds/smpackage/nftables
+
 rm -rf  ${HOME_PATH}/package/libs/libnftnl
 cp -Rf ${HOME_PATH}/feeds/smpackage/libnftnl ${HOME_PATH}/package/libs/libnftnl
+rm -rf ${HOME_PATH}/feeds/smpackage/nftables
+
 rm -rf  ${HOME_PATH}/package/network/config/firewall4
 #cp -Rf ${HOME_PATH}/feeds/smpackage/firewall ${HOME_PATH}/package/network/config/firewall
 cp -Rf ${HOME_PATH}/feeds/smpackage/firewall4 ${HOME_PATH}/package/network/config/firewall4
+rm -rf  ${HOME_PATH}/feeds/smpackage/firewall*
+
 rm -rf  ${HOME_PATH}/package/network/services/fullconenat
 cp -Rf ${HOME_PATH}/feeds/smpackage/fullconenat ${HOME_PATH}/package/network/services/fullconenat
 cp -Rf ${HOME_PATH}/feeds/smpackage/fullconenat-nft ${HOME_PATH}/package/network/services/fullconenat-nft
