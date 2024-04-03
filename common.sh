@@ -689,15 +689,6 @@ fi
 TIME r ""
 TIME g "CPU性能：8370C > 8272CL > 8171M > E5系列"
 TIME r ""
-
-#firewall4补丁
-rm -rf  ${HOME_PATH}/package/network/utils/nftables
-wget -P ${HOME_PATH}/package/network/utils/ https://github.com/wongsyrone/lede-1/tree/master/package/network/utils/nftables
-rm -rf  ${HOME_PATH}/package/libs/libnftnl
-wget -P ${HOME_PATH}/package/libs/ https://github.com/wongsyrone/lede-1/tree/master/package/libs/libnftnl
-rm -rf  ${HOME_PATH}/package/network/config/firewall4
-wget -P ${HOME_PATH}/package/network/config/ https://github.com/wongsyrone/lede-1/tree/master/package/network/config/firewall4
-echo "firewall补丁更换完成"
 }
 
 
@@ -1229,7 +1220,17 @@ CONFIG_PACKAGE_default-settings-chn=y
 EOF
 
 # 由firewall3功换至firewall4
+
+rm -rf  ${HOME_PATH}/package/network/utils/nftables
+cp -Rf ${HOME_PATH}/build/common/Share/nftables ${HOME_PATH}/package/network/utils/nftables
+rm -rf  ${HOME_PATH}/package/libs/libnftnl
+cp -Rf ${HOME_PATH}/build/common/Share/libnftnl ${HOME_PATH}/package/libs/libnftnl
+rm -rf  ${HOME_PATH}/package/network/config/firewall4
+cp -Rf ${HOME_PATH}/build/common/Share/firewall4 ${HOME_PATH}/package/network/config/firewall4
+echo "firewall补丁更换完成"
+
 sed -i 's/+firewall/+uci-firewall/g' ${HOME_PATH}/feeds/luci/applications/luci-app-firewall/Makefile
+
 echo "由firewall3功换至firewall4完成"
 }
 
