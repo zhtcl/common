@@ -333,7 +333,8 @@ for x in ${t[@]}; do \
 done
 
 #删除small-package与源码冲突的插件
-rm -rf ${HOME_PATH}/feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd-alt,miniupnpd-iptables,wireless-regdb,luci-theme-argon,luci-theme-kucat,luci-theme-tomato}
+rm -rf ${HOME_PATH}/feeds/smpackage/{base-files,dnsmasq,ppp,opkg,ucl,upx,vsftpd-alt,miniupnpd-iptables,wireless-regdb,luci-theme-argon,luci-theme-kucat,luci-theme-tomato}
+#firewall*,fullconenat,libnftnl,nftables,
 echo "删除small-package与源码冲突的插件..."
 
 #删除luci/themes多余的主题
@@ -1222,11 +1223,12 @@ EOF
 # 由firewall3功换至firewall4
 
 rm -rf  ${HOME_PATH}/package/network/utils/nftables
-cp -Rf ${HOME_PATH}/build/common/Share/nftables ${HOME_PATH}/package/network/utils/nftables
+cp -Rf ${HOME_PATH}/smpackage/nftables ${HOME_PATH}/package/network/utils/nftables
 rm -rf  ${HOME_PATH}/package/libs/libnftnl
-cp -Rf ${HOME_PATH}/build/common/Share/libnftnl ${HOME_PATH}/package/libs/libnftnl
-rm -rf  ${HOME_PATH}/package/network/config/firewall4
-cp -Rf ${HOME_PATH}/build/common/Share/firewall4 ${HOME_PATH}/package/network/config/firewall4
+cp -Rf ${HOME_PATH}/smpackage/libnftnl ${HOME_PATH}/package/libs/libnftnl
+rm -rf  ${HOME_PATH}/package/network/config/firewall*
+cp -Rf ${HOME_PATH}/smpackage/firewall ${HOME_PATH}/package/network/config/firewall
+cp -Rf ${HOME_PATH}/smpackage/firewall4 ${HOME_PATH}/package/network/config/firewall4
 echo "firewall补丁更换完成"
 
 sed -i 's/+firewall/+uci-firewall/g' ${HOME_PATH}/feeds/luci/applications/luci-app-firewall/Makefile
