@@ -1229,6 +1229,9 @@ cp -Rf ${HOME_PATH}/feeds/smpackage/libnftnl ${HOME_PATH}/package/libs/libnftnl
 rm -rf  ${HOME_PATH}/package/network/config/firewall*
 cp -Rf ${HOME_PATH}/feeds/smpackage/firewall ${HOME_PATH}/package/network/config/firewall
 cp -Rf ${HOME_PATH}/feeds/smpackage/firewall4 ${HOME_PATH}/package/network/config/firewall4
+rm -rf  ${HOME_PATH}/package/network/services/fullconenat
+cp -Rf ${HOME_PATH}/feeds/smpackage/fullconenat ${HOME_PATH}/package/network/services/fullconenat
+cp -Rf ${HOME_PATH}/feeds/smpackage/fullconenat-nft ${HOME_PATH}/package/network/services/fullconenat-nft
 echo "firewall补丁更换完成"
 
 sed -i 's/+firewall/+uci-firewall/g' ${HOME_PATH}/feeds/luci/applications/luci-app-firewall/Makefile
