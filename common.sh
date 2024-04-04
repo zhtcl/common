@@ -340,12 +340,12 @@ echo "删除small-package与源码冲突的插件..."
 #删除luci/themes多余的主题
 rm -rf ${HOME_PATH}/feeds/luci/themes/{luci-theme-argon-mod,luci-theme-argon,luci-theme-design,luci-theme-material,luci-theme-netgear}
 echo "luci/themes中的主题有：luci-theme-argon-mod,luci-theme-argon,luci-theme-bootstrap,luci-theme-design,luci-theme-material,luci-theme-netgear"
-echo "保留主题：luci-theme-bootstrap"
+echo "仅保留主题：luci-theme-bootstrap"
 
 #删除theme1中多余的主题和插件
 rm -rf ${HOME_PATH}/feeds/danshui2/{luci-app-advancedplus,luci-app-argon-config,luci-app-design-config,luci-app-netkeeper-interception,luci-app-smartdns,luci-theme-darkmatter,luci-theme-design,luci-theme-ifit,luci-theme-kucat,luci-theme-opentopd,relevance}
 echo "删除theme1中多余的主题和插件..."
-echo "theme1中保留的主题有：luci-theme-argon,luci-theme-Butterfly,luci-theme-Butterfly-dark,luci-theme-Light,luci-theme-argon-dark-mod,luci-theme-argon-light-mod,luci-theme-bootstrap-mod"
+echo "theme1保留的主题有：luci-theme-argon,luci-theme-Butterfly,luci-theme-Butterfly-dark,luci-theme-Light,luci-theme-argon-dark-mod,luci-theme-argon-light-mod,luci-theme-bootstrap-mod"
 
 case "${SOURCE_CODE}" in
 COOLSNOWWOLF)
@@ -355,10 +355,10 @@ COOLSNOWWOLF)
 #    find . -type d -name "${i}" |grep -v |xargs -i rm -rf {}; \
 #  done
 
-  if [[ -d "${HOME_PATH}/build/common/Share/btrfs-progs" ]]; then
-    rm -rf ${HOME_PATH}/feeds/packages/utils/btrfs-progs
-    cp -Rf ${HOME_PATH}/build/common/Share/btrfs-progs ${HOME_PATH}/feeds/packages/utils/btrfs-progs
-  fi
+#  if [[ -d "${HOME_PATH}/build/common/Share/btrfs-progs" ]]; then
+#    rm -rf ${HOME_PATH}/feeds/packages/utils/btrfs-progs
+#    cp -Rf ${HOME_PATH}/build/common/Share/btrfs-progs ${HOME_PATH}/feeds/packages/utils/btrfs-progs
+#  fi
 
 ;;
 LIENOL)
@@ -670,14 +670,14 @@ if [ -n "$(ls -A "${BUILD_PATH}/files" 2>/dev/null)" ]; then
 fi
 
 # 定时更新固件的插件包
-if [[ "${UPDATE_FIRMWARE_ONLINE}" == "true" ]]; then
-  source ${BUILD_PATH}/upgrade.sh && Diy_Part1
-else
-  find . -type d -name "luci-app-autoupdate" |xargs -i rm -rf {}
-  if [[ -n "$(grep "luci-app-autoupdate" ${HOME_PATH}/include/target.mk)" ]]; then
-    sed -i 's?luci-app-autoupdate??g' ${HOME_PATH}/include/target.mk
-  fi
-fi
+#if [[ "${UPDATE_FIRMWARE_ONLINE}" == "true" ]]; then
+#  source ${BUILD_PATH}/upgrade.sh && Diy_Part1
+#else
+#  find . -type d -name "luci-app-autoupdate" |xargs -i rm -rf {}
+#  if [[ -n "$(grep "luci-app-autoupdate" ${HOME_PATH}/include/target.mk)" ]]; then
+#    sed -i 's?luci-app-autoupdate??g' ${HOME_PATH}/include/target.mk
+#  fi
+#fi
 }
 
 
@@ -1249,7 +1249,7 @@ EOF
 #cp -Rf ${HOME_PATH}/feeds/smpackage/fullconenat-nft ${HOME_PATH}/package/network/services/fullconenat-nft
 #echo "firewall补丁更换完成"
 
-sed -i 's/+firewall/+uci-firewall/g' ${HOME_PATH}/feeds/luci/applications/luci-app-firewall/Makefile
+#sed -i 's/+firewall/+uci-firewall/g' ${HOME_PATH}/feeds/luci/applications/luci-app-firewall/Makefile
 
 echo "由firewall3功换至firewall4完成"
 }
@@ -1728,32 +1728,32 @@ if [[ ! "${weizhicpu}" == "1" ]] && [[ -n "${OpenClash_Core}" ]] && [[ "${OpenCl
   rm -rf ${HOME_PATH}/clash-neihe
 fi
 
-if [[ ! "${weizhicpu}" == "1" ]] && [[ "${AdGuardHome_Core}" == "1" ]]; then
+#if [[ ! "${weizhicpu}" == "1" ]] && [[ "${AdGuardHome_Core}" == "1" ]]; then
   echo "正在执行：给adguardhome下载核心"
-  rm -rf ${HOME_PATH}/AdGuardHome && rm -rf ${HOME_PATH}/files/usr/bin
-  wget -q https://github.com/zhtcl/common/releases/download/API/AdGuardHome.api -O AdGuardHome.api
-  if [[ $? -ne 0 ]];then
-    curl -fsSL https://github.com/zhtcl/common/releases/download/API/AdGuardHome.api -o AdGuardHome.api
-  fi
-  latest_ver="$(grep -E 'tag_name' 'AdGuardHome.api' |grep -E 'v[0-9.]+' -o 2>/dev/null)"
-  rm -rf AdGuardHome.api
-  wget -q https://github.com/AdguardTeam/AdGuardHome/releases/download/${latest_ver}/AdGuardHome_${Arch}.tar.gz
-  if [[ -f "AdGuardHome_${Arch}.tar.gz" ]]; then
-    tar -zxvf AdGuardHome_${Arch}.tar.gz -C ${HOME_PATH}
-    echo "核心下载成功"
-  else
-    echo "下载核心失败"
-  fi
-  mkdir -p ${HOME_PATH}/files/usr/bin
-  if [[ -f "${HOME_PATH}/AdGuardHome/AdGuardHome" ]]; then
-    mv -f ${HOME_PATH}/AdGuardHome ${HOME_PATH}/files/usr/bin/
-    sudo chmod +x ${HOME_PATH}/files/usr/bin/AdGuardHome/AdGuardHome
-    echo "增加AdGuardHome核心完成"
-  else
-    echo "增加AdGuardHome核心失败"
-  fi
-    rm -rf ${HOME_PATH}/{AdGuardHome_${Arch}.tar.gz,AdGuardHome}
-fi
+#  rm -rf ${HOME_PATH}/AdGuardHome && rm -rf ${HOME_PATH}/files/usr/bin
+#  wget -q https://github.com/zhtcl/common/releases/download/API/AdGuardHome.api -O AdGuardHome.api
+#  if [[ $? -ne 0 ]];then
+#    curl -fsSL https://github.com/zhtcl/common/releases/download/API/AdGuardHome.api -o AdGuardHome.api
+#  fi
+#  latest_ver="$(grep -E 'tag_name' 'AdGuardHome.api' |grep -E 'v[0-9.]+' -o 2>/dev/null)"
+#  rm -rf AdGuardHome.api
+#  wget -q https://github.com/AdguardTeam/AdGuardHome/releases/download/${latest_ver}/AdGuardHome_${Arch}.tar.gz
+#  if [[ -f "AdGuardHome_${Arch}.tar.gz" ]]; then
+#    tar -zxvf AdGuardHome_${Arch}.tar.gz -C ${HOME_PATH}
+#    echo "核心下载成功"
+#  else
+#    echo "下载核心失败"
+#  fi
+#  mkdir -p ${HOME_PATH}/files/usr/bin
+#  if [[ -f "${HOME_PATH}/AdGuardHome/AdGuardHome" ]]; then
+#    mv -f ${HOME_PATH}/AdGuardHome ${HOME_PATH}/files/usr/bin/
+#    sudo chmod +x ${HOME_PATH}/files/usr/bin/AdGuardHome/AdGuardHome
+#    echo "增加AdGuardHome核心完成"
+#  else
+#    echo "增加AdGuardHome核心失败"
+#  fi
+#    rm -rf ${HOME_PATH}/{AdGuardHome_${Arch}.tar.gz,AdGuardHome}
+#fi
 }
 
 
