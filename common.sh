@@ -329,7 +329,7 @@ z="luci-app-ssr-plus,luci-app-openclash,*luci-app-passwall*,luci-app-passwall,lu
 echo "删除small-package中Openclash、Passwall、SSR Plus和adguardhome..."
 t=(${z//,/ })
 for x in ${t[@]}; do \
-  find . -type d -name "${x}" |grep -v 'danshui|helloworld' |xargs -i rm -rf {}; \
+  find . -type d -name "${x}" |grep -v 'danshui\|helloworld' |xargs -i rm -rf {}; \
 done
 
 #删除small-package与源码冲突的插件
