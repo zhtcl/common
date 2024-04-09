@@ -334,18 +334,21 @@ done
 
 #删除small-package与源码冲突的插件
 rm -rf ${HOME_PATH}/feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd-alt,miniupnpd-iptables,wireless-regdb,luci-theme-argon,luci-theme-kucat,luci-theme-tomato}
-
-echo "删除small-package与源码冲突的插件..."
+echo "一、删除small-package与源码冲突的插件..."
 
 #删除luci/themes多余的主题
 rm -rf ${HOME_PATH}/feeds/luci/themes/{luci-theme-argon-mod,luci-theme-argon,luci-theme-design,luci-theme-material,luci-theme-netgear}
-echo "luci/themes中的主题有：luci-theme-argon-mod,luci-theme-argon,luci-theme-bootstrap,luci-theme-design,luci-theme-material,luci-theme-netgear"
+echo "二、luci/themes中的主题有：luci-theme-argon-mod,luci-theme-argon,luci-theme-bootstrap,luci-theme-design,luci-theme-material,luci-theme-netgear"
 echo "仅保留主题：luci-theme-bootstrap"
 
 #删除theme1中多余的主题和插件
 rm -rf ${HOME_PATH}/feeds/danshui2/{luci-app-advancedplus,luci-app-argon-config,luci-app-design-config,luci-app-netkeeper-interception,luci-app-smartdns,luci-theme-darkmatter,luci-theme-design,luci-theme-ifit,luci-theme-kucat,luci-theme-opentopd,relevance}
-echo "删除theme1中多余的主题和插件..."
+echo "三、删除theme1中多余的主题和插件..."
 echo "theme1保留的主题有：luci-theme-argon,luci-theme-Butterfly,luci-theme-Butterfly-dark,luci-theme-Light,luci-theme-argon-dark-mod,luci-theme-argon-light-mod,luci-theme-bootstrap-mod"
+
+#删除helloworld与源码冲突的插件
+rm -rf ${HOME_PATH}/feeds/helloworld/{v2ray-core,v2ray-plugin,v2raya}
+echo "四、删除ssr-plus冲突的插件v2ray-core,v2ray-plugin,v2raya"
 
 case "${SOURCE_CODE}" in
 COOLSNOWWOLF)
