@@ -312,7 +312,7 @@ mv -f uniq.conf feeds.conf.default
 cat >>"feeds.conf.default" <<-EOF
 src-git smpackage https://github.com/kenzok8/small-package;main
 #src-git danshui1 https://github.com/281677160/openwrt-package.git;${SOURCE}
-src-git helloworld https://github.com/fw876/helloworld.git
+#src-git helloworld https://github.com/fw876/helloworld.git
 src-git passwall3 https://github.com/xiaorouji/openwrt-passwall-packages;main
 src-git danshui2 https://github.com/zhtcl/openwrt-package.git;Theme1
 EOF
@@ -325,7 +325,7 @@ EOF
 #fi
 
 #small-package中要删除的插件
-z="luci-app-ssr-plus,luci-app-openclash,*luci-app-passwall*,luci-app-passwall,luci-app-passwall2,adguardhome,luci-app-adguardhome"
+z="luci-app-openclash,*luci-app-passwall*,luci-app-passwall,luci-app-passwall2,adguardhome,luci-app-adguardhome"
 echo "删除small-package中Openclash、Passwall、SSR Plus和adguardhome..."
 t=(${z//,/ })
 for x in ${t[@]}; do \
@@ -345,10 +345,6 @@ echo "仅保留主题：luci-theme-bootstrap"
 rm -rf ${HOME_PATH}/feeds/danshui2/{luci-app-advancedplus,luci-app-argon-config,luci-app-design-config,luci-app-netkeeper-interception,luci-app-smartdns,luci-theme-darkmatter,luci-theme-design,luci-theme-ifit,luci-theme-kucat,luci-theme-opentopd,relevance}
 echo "三、删除theme1中多余的主题和插件..."
 echo "theme1保留的主题有：luci-theme-argon,luci-theme-Butterfly,luci-theme-Butterfly-dark,luci-theme-Light,luci-theme-argon-dark-mod,luci-theme-argon-light-mod,luci-theme-bootstrap-mod"
-
-#删除helloworld与源码冲突的插件
-rm -rf ${HOME_PATH}/feeds/helloworld/{v2ray-core,v2ray-plugin,v2raya}
-echo "四、删除ssr-plus冲突的插件v2ray-core,v2ray-plugin,v2raya"
 
 case "${SOURCE_CODE}" in
 COOLSNOWWOLF)
