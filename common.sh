@@ -310,7 +310,7 @@ mv -f uniq.conf feeds.conf.default
 
 # 这里增加了源,要对应的删除/etc/opkg/distfeeds.conf插件源
 cat >>"feeds.conf.default" <<-EOF
-src-git smpackage https://github.com/kenzok8/small-package;main
+#src-git smpackage https://github.com/kenzok8/small-package;main
 #src-git danshui1 https://github.com/281677160/openwrt-package.git;${SOURCE}
 #src-git helloworld https://github.com/fw876/helloworld.git
 src-git passwall3 https://github.com/xiaorouji/openwrt-passwall-packages;main
@@ -325,25 +325,25 @@ EOF
 #fi
 
 #small-package中要删除的插件
-z="luci-app-ssr-plus,luci-app-openclash,*luci-app-passwall*,luci-app-passwall,luci-app-passwall2,adguardhome,luci-app-adguardhome"
-echo "删除small-package中Openclash、Passwall、SSR Plus和adguardhome..."
-t=(${z//,/ })
-for x in ${t[@]}; do \
-  find . -type d -name "${x}" |grep -v 'danshui\|helloworld' |xargs -i rm -rf {}; \
-done
+#z="luci-app-ssr-plus,luci-app-openclash,*luci-app-passwall*,luci-app-passwall,luci-app-passwall2,adguardhome,luci-app-adguardhome"
+#echo "删除small-package中Openclash、Passwall、SSR Plus和adguardhome..."
+#t=(${z//,/ })
+#for x in ${t[@]}; do \
+#  find . -type d -name "${x}" |grep -v 'danshui\|helloworld' |xargs -i rm -rf {}; \
+#done
 
 #删除small-package与源码冲突的插件
-rm -rf ${HOME_PATH}/feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd-alt,miniupnpd-iptables,wireless-regdb,luci-theme-argon,luci-theme-kucat,luci-theme-tomato}
-echo "一、删除small-package与源码冲突的插件..."
+#rm -rf ${HOME_PATH}/feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd-alt,miniupnpd-iptables,wireless-regdb,luci-theme-argon,luci-theme-kucat,luci-theme-tomato}
+#echo "一、删除small-package与源码冲突的插件..."
 
 #删除luci/themes多余的主题
 rm -rf ${HOME_PATH}/feeds/luci/themes/{luci-theme-argon-mod,luci-theme-argon,luci-theme-design,luci-theme-material,luci-theme-netgear}
-echo "二、luci/themes中的主题有：luci-theme-argon-mod,luci-theme-argon,luci-theme-bootstrap,luci-theme-design,luci-theme-material,luci-theme-netgear"
+echo "一、luci/themes中的主题有：luci-theme-argon-mod,luci-theme-argon,luci-theme-bootstrap,luci-theme-design,luci-theme-material,luci-theme-netgear"
 echo "仅保留主题：luci-theme-bootstrap"
 
 #删除theme1中多余的主题和插件
 rm -rf ${HOME_PATH}/feeds/danshui2/{luci-app-advancedplus,luci-app-argon-config,luci-app-design-config,luci-app-netkeeper-interception,luci-app-smartdns,luci-theme-darkmatter,luci-theme-design,luci-theme-ifit,luci-theme-kucat,luci-theme-opentopd,relevance}
-echo "三、删除theme1中多余的主题和插件..."
+echo "二、删除theme1中多余的主题和插件..."
 echo "theme1保留的主题有：luci-theme-argon,luci-theme-Butterfly,luci-theme-Butterfly-dark,luci-theme-Light,luci-theme-argon-dark-mod,luci-theme-argon-light-mod,luci-theme-bootstrap-mod"
 
 case "${SOURCE_CODE}" in
