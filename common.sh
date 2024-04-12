@@ -314,6 +314,8 @@ cat >>"feeds.conf.default" <<-EOF
 #src-git danshui1 https://github.com/281677160/openwrt-package.git;${SOURCE}
 src-git helloworld https://github.com/fw876/helloworld.git
 src-git passwall3 https://github.com/xiaorouji/openwrt-passwall-packages;main
+src-git cdnspeedtest1 https://github.com/mingxiaoyu/luci-app-cloudflarespeedtest;main
+src-git cdnspeedtest https://github.com/immortalwrt-collections/openwrt-cdnspeedtest.git;master
 src-git danshui2 https://github.com/zhtcl/openwrt-package.git;Theme1
 EOF
 ./scripts/feeds update -a
