@@ -315,7 +315,7 @@ cat >>"feeds.conf.default" <<-EOF
 src-git helloworld https://github.com/fw876/helloworld.git
 src-git passwall3 https://github.com/xiaorouji/openwrt-passwall-packages;main
 src-git danshui2 https://github.com/zhtcl/openwrt-package.git;Theme1
-src-git alist https://github.com/sbwml/luci-app-alis.git;master
+src-git package https://github.com/sbwml/luci-app-alis.git;master
 EOF
 ./scripts/feeds update -a
 
