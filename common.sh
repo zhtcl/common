@@ -315,7 +315,6 @@ cat >>"feeds.conf.default" <<-EOF
 src-git helloworld https://github.com/fw876/helloworld.git
 src-git passwall3 https://github.com/xiaorouji/openwrt-passwall-packages;main
 src-git danshui2 https://github.com/zhtcl/openwrt-package.git;Theme1
-git clone https://github.com/sbwml/luci-app-alist package/alist
 EOF
 ./scripts/feeds update -a
 
@@ -831,6 +830,7 @@ else
   cp -Rf ${HOME_PATH}/build/common/language/zh-cn.sh ${HOME_PATH}/zh-cn.sh
   /bin/bash zh-cn.sh && rm -rf zh-cn.sh
 fi
+git clone https://github.com/sbwml/luci-app-alist package/alist
 ./scripts/feeds install -a > /dev/null 2>&1
 # 使用自定义配置文件
 [[ -f ${BUILD_PATH}/$CONFIG_FILE ]] && mv ${BUILD_PATH}/$CONFIG_FILE .config
