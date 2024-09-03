@@ -817,6 +817,7 @@ mv -f uniq.conf feeds.conf.default
 sed -i 's@.*danshui*@#&@g' "feeds.conf.default"
 sed -i 's@.*src-git lienol*@#&@g' "feeds.conf.default"
 sed -i 's@.*src-git other*@#&@g' "feeds.conf.default"
+git clone https://github.com/sbwml/luci-app-alist package/alist
 ./scripts/feeds update -a
 sed -i 's/^#\(.*danshui\)/\1/' "feeds.conf.default"
 sed -i 's/^#\(.*src-git lienol\)/\1/' "feeds.conf.default"
@@ -830,7 +831,7 @@ else
   cp -Rf ${HOME_PATH}/build/common/language/zh-cn.sh ${HOME_PATH}/zh-cn.sh
   /bin/bash zh-cn.sh && rm -rf zh-cn.sh
 fi
-git clone https://github.com/sbwml/luci-app-alist package/alist
+
 ./scripts/feeds install -a > /dev/null 2>&1
 # 使用自定义配置文件
 [[ -f ${BUILD_PATH}/$CONFIG_FILE ]] && mv ${BUILD_PATH}/$CONFIG_FILE .config
