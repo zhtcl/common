@@ -653,20 +653,20 @@ XWRT|OFFICIAL)
 esac
 
 source ${HOME_PATH}/build/common/Share/19.07/netsupport.sh
-echo "okay"
-[[ -d "${HOME_PATH}/build/common/Share/luci-app-samba4" ]] && rm -rf ${HOME_PATH}/build/common/Share/luci-app-samba4
-amba4="$(find . -type d -name 'luci-app-samba4')"
-autosam="$(find . -type d -name 'autosamba')"
-if [[ -z "${amba4}" ]] && [[ -n "${autosam}" ]]; then
-  for X in "$(find . -type d -name 'autosamba')/Makefile"; do sed -i "s?+luci-app-samba4?+luci-app-samba?g" "$X"; done
-else
-  for X in "$(find . -type d -name 'autosamba')/Makefile"; do
-    if [[ `grep -c "+luci-app-samba4" $X` -eq '0' ]]; then
-      sed -i "s?+luci-app-samba?+luci-app-samba4?g" "$X"
-    fi
-  done
-fi
-echo "okay1"
+
+#[[ -d "${HOME_PATH}/build/common/Share/luci-app-samba4" ]] && rm -rf ${HOME_PATH}/build/common/Share/luci-app-samba4
+#amba4="$(find . -type d -name 'luci-app-samba4')"
+#autosam="$(find . -type d -name 'autosamba')"
+#if [[ -z "${amba4}" ]] && [[ -n "${autosam}" ]]; then
+#  for X in "$(find . -type d -name 'autosamba')/Makefile"; do sed -i "s?+luci-app-samba4?+luci-app-samba?g" "$X"; done
+#else
+#  for X in "$(find . -type d -name 'autosamba')/Makefile"; do
+#    if [[ `grep -c "+luci-app-samba4" $X` -eq '0' ]]; then
+#      sed -i "s?+luci-app-samba?+luci-app-samba4?g" "$X"
+#    fi
+#  done
+#fi
+
 # files大法，设置固件无烦恼
 if [ -n "$(ls -A "${BUILD_PATH}/patches" 2>/dev/null)" ]; then
   find "${BUILD_PATH}/patches" -type f -name '*.patch' -print0 | sort -z | xargs -I % -t -0 -n 1 sh -c "cat '%'  | patch -d './' -p1 --forward --no-backup-if-mismatch"
