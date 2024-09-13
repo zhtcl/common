@@ -736,6 +736,7 @@ if [[ "${REPO_BRANCH}" =~ (19.07|21.02|22.03) ]]; then
     curl -o ${HOME_PATH}/feeds/passwall3/shadowsocks-rust/Makefile https://raw.githubusercontent.com/281677160/common/main/Share/shadowsocks-rust/Makefile
   fi
 fi
+echo "okay"
 }
 
 
