@@ -500,8 +500,8 @@ git clone https://github.com/sbwml/packages_lang_golang -b 22.x ${HOME_PATH}/fee
 # r2s注释
 if [[ `grep -c "CONFIG_TARGET_rockchip=y" ${HOME_PATH}/.config` -eq '1' ]]; then
 sed -i '/^UBOOT_TARGETS := rk3528-evb rk3588-evb/s/^/#/' package/boot/uboot-rk35xx/Makefile
-fi
 echo "r2s 注释成功"
+fi
 # 更换luci-theme-argon
 #rm -rf ${HOME_PATH}/feeds/danshui2/luci-theme-argon
 #git clone https://github.com/jerrykuku/luci-theme-argon -b master ${HOME_PATH}/feeds/danshui2/luci-theme-argon
