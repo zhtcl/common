@@ -348,7 +348,7 @@ echo "theme1保留的主题有：luci-theme-argon,luci-theme-Butterfly,luci-them
 
 #onecloud
 rm -rf ${HOME_PATH}/target/linux/amlogic
-cp -rf ${HOME_PATH}/feeds/danshui2/OneCloud/6.1/amlogic ${HOME_PATH}/target/linux
+cp -rf ${HOME_PATH}/feeds/danshui2/OneCloud/kernel/amlogic ${HOME_PATH}/target/linux
 echo "onecloud kernel copied"
 
 case "${SOURCE_CODE}" in
