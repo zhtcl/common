@@ -598,13 +598,13 @@ sudo chmod +x "${FILES_PATH}/usr/bin/openwrt"
 
 echo '#!/bin/bash' > "${DELETE}"
 sudo chmod +x "${DELETE}"
-echo "okay"
+
 if [[ -d "${HOME_PATH}/target/linux/armsr" ]]; then
   features_file="${HOME_PATH}/target/linux/armsr/Makefile"
 elif [[ -d "${HOME_PATH}/target/linux/armvirt" ]]; then
   features_file="${HOME_PATH}/target/linux/armvirt/Makefile"
 fi
-echo "okay1"
+
 [[ -n "${features_file}" ]] && sed -i "s?FEATURES+=.*?FEATURES+=targz?g" "${features_file}"
 sed -i '/DISTRIB_SOURCECODE/d' "${REPAIR_PATH}"
 echo -e "\nDISTRIB_SOURCECODE='${SOURCE}_${LUCI_EDITION}'" >> "${REPAIR_PATH}" && sed -i '/^\s*$/d' "${REPAIR_PATH}"
@@ -653,7 +653,7 @@ XWRT|OFFICIAL)
 esac
 
 source ${HOME_PATH}/build/common/Share/19.07/netsupport.sh
-
+echo "okay"
 [[ -d "${HOME_PATH}/build/common/Share/luci-app-samba4" ]] && rm -rf ${HOME_PATH}/build/common/Share/luci-app-samba4
 amba4="$(find . -type d -name 'luci-app-samba4')"
 autosam="$(find . -type d -name 'autosamba')"
@@ -666,7 +666,7 @@ else
     fi
   done
 fi
-
+echo "okay1"
 # files大法，设置固件无烦恼
 if [ -n "$(ls -A "${BUILD_PATH}/patches" 2>/dev/null)" ]; then
   find "${BUILD_PATH}/patches" -type f -name '*.patch' -print0 | sort -z | xargs -I % -t -0 -n 1 sh -c "cat '%'  | patch -d './' -p1 --forward --no-backup-if-mismatch"
