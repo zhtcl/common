@@ -128,7 +128,7 @@ function Diy_Part3() {
 	echo "BIN_PATH=${BIN_PATH}" >> ${GITHUB_ENV}
  	[[ -f "${GITHUB_ENV}" ]] && source ${GITHUB_ENV}
 	[[ ! -d "${BIN_PATH}" ]] && mkdir -p "${BIN_PATH}" || rm -rf "${BIN_PATH}"/*
-	
+	mkdir -p "${FIRMWARE_PATH}"
 	cd "${FIRMWARE_PATH}"
 	if [[ `ls -1 |grep -c ".img"` -ge '1' ]] && [[ `ls -1 |grep -c ".img.gz"` -eq '0' ]]; then
 		gzip -f9n *.img
