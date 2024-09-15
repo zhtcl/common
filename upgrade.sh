@@ -135,7 +135,7 @@ function Diy_Part3() {
 	fi
 	
 	case "${TARGET_BOARD}" in
-	x86)
+	x86|amlogic)
 		if [[ `ls -1 | grep -c "efi"` -ge '1' ]]; then
 			EFI_ZHONGZHUAN="$(ls -1 |grep -Eo ".*squashfs.*efi.*img.gz")"
 			if [[ -f "${EFI_ZHONGZHUAN}" ]]; then
