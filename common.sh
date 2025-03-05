@@ -350,9 +350,9 @@ echo "theme1保留的主题有：luci-theme-argon,luci-theme-Butterfly,luci-them
 rm -rf ${HOME_PATH}/feeds/passwall3/{xray-core,xray-plugin}
 echo "三、删除passwall packages xray-core..."
 #onecloud
-rm -rf ${HOME_PATH}/target/linux/amlogic
-cp -rf ${HOME_PATH}/feeds/danshui2/OneCloud/kernel/amlogic ${HOME_PATH}/target/linux
-echo "onecloud kernel copied"
+#rm -rf ${HOME_PATH}/target/linux/amlogic
+#cp -rf ${HOME_PATH}/feeds/danshui2/OneCloud/kernel/amlogic ${HOME_PATH}/target/linux
+#echo "onecloud kernel copied"
 
 case "${SOURCE_CODE}" in
 COOLSNOWWOLF)
