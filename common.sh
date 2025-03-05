@@ -309,22 +309,13 @@ cat feeds.conf.default|awk '!/^#/'|awk '!/^$/'|awk '!a[$1" "$2]++{print}' >uniq.
 mv -f uniq.conf feeds.conf.default
 
 # 这里增加了源,要对应的删除/etc/opkg/distfeeds.conf插件源
-if [[ -f "${HOME_PATH}/feeds/luci/modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json" ]]; then
- cat >>"feeds.conf.default" <<-EOF
- #src-git smpackage https://github.com/kenzok8/small-package;main
- #src-git danshui1 https://github.com/281677160/openwrt-package.git;${SOURCE}
- src-git helloworld https://github.com/fw876/helloworld.git
- src-git passwall3 https://github.com/xiaorouji/openwrt-passwall-packages;main
- src-git danshui2 https://github.com/zhtcl/openwrt-package.git;Theme2
- EOF
-else
-  cat >>"feeds.conf.default" <<-EOF
-  src-git helloworld https://github.com/fw876/helloworld.git
-  src-git passwall3 https://github.com/xiaorouji/openwrt-passwall-packages;main
-  src-git danshui2 https://github.com/zhtcl/openwrt-package.git;Theme1
-  EOF
-fi
-  
+cat >>"feeds.conf.default" <<-EOF
+#src-git smpackage https://github.com/kenzok8/small-package;main
+#src-git danshui1 https://github.com/281677160/openwrt-package.git;${SOURCE}
+src-git helloworld https://github.com/fw876/helloworld.git
+src-git passwall3 https://github.com/xiaorouji/openwrt-passwall-packages;main
+src-git danshui2 https://github.com/zhtcl/openwrt-package.git;Theme1
+EOF
 ./scripts/feeds update -a
 
 #if [[ -f "${HOME_PATH}/feeds/luci/modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json" ]]; then
