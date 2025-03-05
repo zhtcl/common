@@ -838,9 +838,9 @@ else
   cp -Rf ${HOME_PATH}/build/common/language/zh-cn.sh ${HOME_PATH}/zh-cn.sh
   /bin/bash zh-cn.sh && rm -rf zh-cn.sh
 fi
-git clone https://github.com/sbwml/luci-app-alist package/new/alist
-rm -rf package/new/alist/luci-app-alist
-git clone https://github.com/sbwml/luci-app-alist package/new/alist/luci-app-alist -b lua --depth=1
+git clone https://github.com/sbwml/luci-app-alist package/alist
+#rm -rf package/new/alist/luci-app-alist
+#git clone https://github.com/sbwml/luci-app-alist package/new/alist/luci-app-alist -b lua --depth=1
 ./scripts/feeds install -a > /dev/null 2>&1
 # 使用自定义配置文件
 [[ -f ${BUILD_PATH}/$CONFIG_FILE ]] && mv ${BUILD_PATH}/$CONFIG_FILE .config
