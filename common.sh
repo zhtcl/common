@@ -314,7 +314,7 @@ cat >>"feeds.conf.default" <<-EOF
 #src-git danshui1 https://github.com/281677160/openwrt-package.git;${SOURCE}
 src-git helloworld https://github.com/fw876/helloworld.git
 src-git passwall3 https://github.com/xiaorouji/openwrt-passwall-packages;main
-src-git danshui2 https://github.com/zhtcl/openwrt-package.git;Theme2
+src-git danshui2 https://github.com/zhtcl/openwrt-package.git;Theme1
 EOF
 ./scripts/feeds update -a
 
@@ -337,7 +337,7 @@ EOF
 #echo "一、删除small-package与源码冲突的插件..."
 
 #删除luci/themes多余的主题
-rm -rf ${HOME_PATH}/feeds/luci/themes/{luci-theme-argon-mod,luci-theme-argon,luci-theme-design,luci-theme-material,luci-theme-netgear}
+rm -rf ${HOME_PATH}/feeds/luci/themes/{luci-theme-argon-mod,luci-theme-design,luci-theme-material,luci-theme-netgear}
 echo "一、luci/themes中的主题有：luci-theme-argon-mod,luci-theme-bootstrap,luci-theme-design,luci-theme-material,luci-theme-netgear"
 echo "仅保留主题：luci-theme-argon,luci-theme-bootstrap"
 
