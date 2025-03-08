@@ -314,7 +314,7 @@ cat >>"feeds.conf.default" <<-EOF
 #src-git danshui1 https://github.com/281677160/openwrt-package.git;${SOURCE}
 src-git helloworld https://github.com/fw876/helloworld.git
 src-git passwall3 https://github.com/xiaorouji/openwrt-passwall-packages;main
-src-git danshui2 https://github.com/zhtcl/openwrt-package.git;Theme1
+src-git danshui2 https://github.com/zhtcl/openwrt-package.git;Theme2
 EOF
 ./scripts/feeds update -a
 
@@ -338,13 +338,13 @@ EOF
 
 #删除luci/themes多余的主题
 rm -rf ${HOME_PATH}/feeds/luci/themes/{luci-theme-argon-mod,luci-theme-argon,luci-theme-design,luci-theme-material,luci-theme-netgear}
-echo "一、luci/themes中的主题有：luci-theme-argon-mod,luci-theme-argon,luci-theme-bootstrap,luci-theme-design,luci-theme-material,luci-theme-netgear"
-echo "仅保留主题：luci-theme-bootstrap"
+echo "一、luci/themes中的主题有：luci-theme-argon-mod,luci-theme-bootstrap,luci-theme-design,luci-theme-material,luci-theme-netgear"
+echo "仅保留主题：luci-theme-argon,luci-theme-bootstrap"
 
 #删除theme1中多余的主题和插件
-rm -rf ${HOME_PATH}/feeds/danshui2/{luci-app-advancedplus,luci-app-argon-config,luci-app-design-config,luci-app-netkeeper-interception,luci-app-smartdns,luci-theme-darkmatter,luci-theme-design,luci-theme-ifit,luci-theme-kucat,luci-theme-opentopd,relevance}
+rm -rf ${HOME_PATH}/feeds/danshui2/{luci-theme-argon,luci-app-advancedplus,luci-app-argon-config,luci-app-design-config,luci-app-netkeeper-interception,luci-app-smartdns,luci-theme-darkmatter,luci-theme-design,luci-theme-ifit,luci-theme-kucat,luci-theme-opentopd,relevance}
 echo "二、删除theme1中多余的主题和插件..."
-echo "theme1保留的主题有：luci-theme-argon,luci-theme-Butterfly,luci-theme-Butterfly-dark,luci-theme-Light,luci-theme-argon-dark-mod,luci-theme-argon-light-mod,luci-theme-bootstrap-mod"
+echo "theme1保留的主题有：luci-theme-Butterfly,luci-theme-Butterfly-dark,luci-theme-Light,luci-theme-argon-dark-mod,luci-theme-argon-light-mod,luci-theme-bootstrap-mod"
 
 #删除passwall3中的xray-core和xray-plugin
 rm -rf ${HOME_PATH}/feeds/passwall3/{xray-core,xray-plugin}
