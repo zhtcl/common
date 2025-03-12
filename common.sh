@@ -346,9 +346,9 @@ rm -rf ${HOME_PATH}/feeds/danshui2/{luci-theme-argon,luci-app-advancedplus,luci-
 echo "二、删除theme1中多余的主题和插件..."
 echo "theme1保留的主题有：luci-theme-Butterfly,luci-theme-Butterfly-dark,luci-theme-Light,luci-theme-argon-dark-mod,luci-theme-argon-light-mod,luci-theme-bootstrap-mod"
 
-#删除passwall3中的xray-core和xray-plugin
-rm -rf ${HOME_PATH}/feeds/passwall3/{xray-core,xray-plugin}
-echo "三、删除passwall packages xray-core..."
+##删除passwall3中的xray-core和xray-plugin
+#rm -rf ${HOME_PATH}/feeds/passwall3/{xray-core,xray-plugin}
+#echo "三、删除passwall packages xray-core..."
 #onecloud
 #rm -rf ${HOME_PATH}/target/linux/amlogic
 #cp -rf ${HOME_PATH}/feeds/danshui2/OneCloud/kernel/amlogic ${HOME_PATH}/target/linux
