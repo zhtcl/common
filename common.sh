@@ -143,7 +143,7 @@ XWRT)
   export DIY_WORK="${FOLDER_NAME}$(echo "${LUCI_EDITION}" |sed "s/\.//g" |sed "s/\-//g")"
 ;;
 OFFICIAL)
-  export REPO_URL="https://git.openwrt.org/openwrt/openwrt"
+  export REPO_URL="https://git.openwrt.org/openwrt/openwrt.git"
   export SOURCE="Official"
   export SOURCE_OWNER="openwrt's"
   export LUCI_EDITION="$(echo "${REPO_BRANCH}" |sed 's/openwrt-//g')"
