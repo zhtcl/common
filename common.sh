@@ -143,7 +143,7 @@ XWRT)
   export DIY_WORK="${FOLDER_NAME}$(echo "${LUCI_EDITION}" |sed "s/\.//g" |sed "s/\-//g")"
 ;;
 OFFICIAL)
-  export REPO_URL="https://github.com/openwrt/openwrt"
+  export REPO_URL="https://git.openwrt.org/openwrt/openwrt"
   export SOURCE="Official"
   export SOURCE_OWNER="openwrt's"
   export LUCI_EDITION="$(echo "${REPO_BRANCH}" |sed 's/openwrt-//g')"
@@ -310,7 +310,7 @@ mv -f uniq.conf feeds.conf.default
 
 # 这里增加了源,要对应的删除/etc/opkg/distfeeds.conf插件源
 cat >>"feeds.conf.default" <<-EOF
-src-git smpackage https://github.com/kenzok8/openwrt-packages;master
+#src-git smpackage https://github.com/kenzok8/openwrt-packages;master
 #src-git danshui1 https://github.com/281677160/openwrt-package.git;${SOURCE}
 src-git helloworld https://github.com/fw876/helloworld.git
 src-git passwall3 https://github.com/xiaorouji/openwrt-passwall-packages;main
