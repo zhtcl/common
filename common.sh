@@ -333,8 +333,8 @@ EOF
 #done
 
 #删除small-package与源码冲突的插件
-rm -rf ${HOME_PATH}/feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd-alt,miniupnpd-iptables,wireless-regdb,luci-theme-kucat,luci-theme-tomato,luci-app-openclash,luci-app-passwall,luci-app-passwall2,v2ray-geoview,vlmcsd}
-echo "一、删除small-package与源码冲突的插件..."
+#rm -rf ${HOME_PATH}/feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd-alt,miniupnpd-iptables,wireless-regdb,luci-theme-kucat,luci-theme-tomato,luci-app-openclash,luci-app-passwall,luci-app-passwall2,v2ray-geoview,vlmcsd}
+#echo "一、删除small-package与源码冲突的插件..."
 
 #删除luci/themes多余的主题
 rm -rf ${HOME_PATH}/feeds/luci/themes/{luci-theme-argon-mod,luci-theme-design,luci-theme-material,luci-theme-netgear}
