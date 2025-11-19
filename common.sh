@@ -1713,15 +1713,15 @@ if [[ ! "${weizhicpu}" == "1" ]] && [[ -n "${OpenClash_Core}" ]] && [[ "${OpenCl
     else
       echo "OpenClash增加meta内核失败"
     fi
-    gzip -d clash_tun.gz
-    if [[ $? -eq 0 ]];then
-      mv -f ${HOME_PATH}/clash-neihe/clash_tun ${HOME_PATH}/files/etc/openclash/core/clash_tun
-      sudo chmod +x ${HOME_PATH}/files/etc/openclash/core/clash_tun
-      echo "clash"
-      echo "OpenClash增加tun内核成功"
-    else
-      echo "OpenClash增加tun内核失败"
-    fi
+#    gzip -d clash_tun.gz
+#    if [[ $? -eq 0 ]];then
+#      mv -f ${HOME_PATH}/clash-neihe/clash_tun ${HOME_PATH}/files/etc/openclash/core/clash_tun
+#      sudo chmod +x ${HOME_PATH}/files/etc/openclash/core/clash_tun
+#      echo "clash"
+#      echo "OpenClash增加tun内核成功"
+#    else
+#      echo "OpenClash增加tun内核失败"
+#    fi
   elif [[ "${OpenClash_Core}" == "1" ]]; then
     wget -q https://raw.githubusercontent.com/vernesong/OpenClash/core/${OpenClash_branch}/dev/clash-${Archclash}.tar.gz
     if [[ $? -ne 0 ]];then
