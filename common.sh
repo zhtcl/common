@@ -1723,19 +1723,19 @@ if [[ ! "${weizhicpu}" == "1" ]] && [[ -n "${OpenClash_Core}" ]] && [[ "${OpenCl
 #      echo "OpenClash增加tun内核失败"
 #    fi
   elif [[ "${OpenClash_Core}" == "1" ]]; then
-    wget -q https://raw.githubusercontent.com/vernesong/OpenClash/core/${OpenClash_branch}/dev/clash-${Archclash}.tar.gz
+    wget -q https://raw.githubusercontent.com/vernesong/OpenClash/core/${OpenClash_branch}/meta/clash-${Archclash}.tar.gz -O meta.tar.gz
     if [[ $? -ne 0 ]];then
       wget -q https://github.com/vernesong/OpenClash/releases/download/Clash/clash-${Archclash}.tar.gz
     else
-      echo "OpenClash内核下载成功"
+      echo "OpenClash Meta内核下载成功"
     fi
-    tar -zxvf clash-${Archclash}.tar.gz
-    if [[ -f "${HOME_PATH}/clash-neihe/clash" ]]; then
-      mv -f ${HOME_PATH}/clash-neihe/clash ${HOME_PATH}/files/etc/openclash/core/clash
-      sudo chmod +x ${HOME_PATH}/files/etc/openclash/core/clash
-      echo "OpenClash增加内核成功"
+    tar -zxvf meta.tar.gz -O > clash_meta
+    if [[ -f "${HOME_PATH}/clash-neihe/clash_meta" ]]; then
+      mv -f ${HOME_PATH}/clash-neihe/clash_meta ${HOME_PATH}/files/etc/openclash/core/clash_meta
+      sudo chmod +x ${HOME_PATH}/files/etc/openclash/core/clash_meta
+      echo "OpenClash meta内核增加成功"
     else
-      echo "OpenClash增加内核失败"
+      echo "OpenClash meta内核增加失败"
     fi
   else
     echo "无需内核"
