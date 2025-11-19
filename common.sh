@@ -1746,32 +1746,33 @@ if [[ ! "${weizhicpu}" == "1" ]] && [[ -n "${OpenClash_Core}" ]] && [[ "${OpenCl
   rm -rf ${HOME_PATH}/clash-neihe
 fi
 
-#if [[ ! "${weizhicpu}" == "1" ]] && [[ "${AdGuardHome_Core}" == "1" ]]; then
+if [[ ! "${weizhicpu}" == "1" ]] && [[ "${AdGuardHome_Core}" == "1" ]]; then
   echo "正在执行：给adguardhome下载核心"
-#  rm -rf ${HOME_PATH}/AdGuardHome && rm -rf ${HOME_PATH}/files/usr/bin
-#  wget -q https://github.com/zhtcl/common/releases/download/API/AdGuardHome.api -O AdGuardHome.api
-#  if [[ $? -ne 0 ]];then
-#    curl -fsSL https://github.com/zhtcl/common/releases/download/API/AdGuardHome.api -o AdGuardHome.api
-#  fi
-#  latest_ver="$(grep -E 'tag_name' 'AdGuardHome.api' |grep -E 'v[0-9.]+' -o 2>/dev/null)"
-#  rm -rf AdGuardHome.api
-#  wget -q https://github.com/AdguardTeam/AdGuardHome/releases/download/${latest_ver}/AdGuardHome_${Arch}.tar.gz
-#  if [[ -f "AdGuardHome_${Arch}.tar.gz" ]]; then
-#    tar -zxvf AdGuardHome_${Arch}.tar.gz -C ${HOME_PATH}
-#    echo "核心下载成功"
-#  else
-#    echo "下载核心失败"
-#  fi
-#  mkdir -p ${HOME_PATH}/files/usr/bin
-#  if [[ -f "${HOME_PATH}/AdGuardHome/AdGuardHome" ]]; then
-#    mv -f ${HOME_PATH}/AdGuardHome ${HOME_PATH}/files/usr/bin/
-#    sudo chmod +x ${HOME_PATH}/files/usr/bin/AdGuardHome/AdGuardHome
-#    echo "增加AdGuardHome核心完成"
-#  else
-#    echo "增加AdGuardHome核心失败"
-#  fi
-#    rm -rf ${HOME_PATH}/{AdGuardHome_${Arch}.tar.gz,AdGuardHome}
-#fi
+  rm -rf ${HOME_PATH}/AdGuardHome && rm -rf ${HOME_PATH}/files/usr/bin
+  wget -q https://github.com/zhtcl/common/releases/download/API/AdGuardHome.api -O AdGuardHome.api
+  if [[ $? -ne 0 ]];then
+    curl -fsSL https://github.com/zhtcl/common/releases/download/API/AdGuardHome.api -o AdGuardHome.api
+  fi
+  latest_ver="$(grep -E 'tag_name' 'AdGuardHome.api' |grep -E 'v[0-9.]+' -o 2>/dev/null)"
+  echo $latest_ver
+  rm -rf AdGuardHome.api
+  wget -q https://github.com/AdguardTeam/AdGuardHome/releases/download/${latest_ver}/AdGuardHome_${Arch}.tar.gz
+  if [[ -f "AdGuardHome_${Arch}.tar.gz" ]]; then
+    tar -zxvf AdGuardHome_${Arch}.tar.gz -C ${HOME_PATH}
+    echo "核心下载成功"
+  else
+    echo "下载核心失败"
+  fi
+  mkdir -p ${HOME_PATH}/files/usr/bin
+  if [[ -f "${HOME_PATH}/AdGuardHome/AdGuardHome" ]]; then
+    mv -f ${HOME_PATH}/AdGuardHome ${HOME_PATH}/files/usr/bin/
+    sudo chmod +x ${HOME_PATH}/files/usr/bin/AdGuardHome/AdGuardHome
+    echo "增加AdGuardHome核心完成"
+  else
+    echo "增加AdGuardHome核心失败"
+  fi
+    rm -rf ${HOME_PATH}/{AdGuardHome_${Arch}.tar.gz,AdGuardHome}
+fi
 }
 
 
