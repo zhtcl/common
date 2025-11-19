@@ -1697,13 +1697,13 @@ if [[ ! "${weizhicpu}" == "1" ]] && [[ -n "${OpenClash_Core}" ]] && [[ "${OpenCl
     TUN="$(cat core_version |grep -v "^v\|^V\|^a" |grep -E "[0-9]+.[0-9]+.[0-9]+")"
 #    wget -q https://raw.githubusercontent.com/vernesong/OpenClash/core/${OpenClash_branch}/premium/clash-${Archclash}-${TUN}.gz -O clash_tun.gz
     
-    tar -zxvf clash.tar.gz -O > clash
+    tar -zxvf clash.tar.gz
     if [[ $? -eq 0 ]];then
       mv -f ${HOME_PATH}/clash-neihe/clash ${HOME_PATH}/files/etc/openclash/core/clash
       sudo chmod +x ${HOME_PATH}/files/etc/openclash/core/clash
-      echo "OpenClash增加dev内核成功"
+      echo "OpenClash增加smart内核成功"
     else
-      echo "OpenClash增加dev内核失败"
+      echo "OpenClash增加smart内核失败"
     fi
     tar -zxvf meta.tar.gz -O > clash_meta
     if [[ $? -eq 0 ]];then
