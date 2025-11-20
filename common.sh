@@ -312,8 +312,8 @@ mv -f uniq.conf feeds.conf.default
 cat >>"feeds.conf.default" <<-EOF
 #src-git smpackage https://github.com/kenzok8/openwrt-packages;master
 #src-git danshui1 https://github.com/281677160/openwrt-package.git;${SOURCE}
-src-git helloworld https://github.com/fw876/helloworld.git
-src-git passwall3 https://github.com/xiaorouji/openwrt-passwall-packages;main
+#src-git helloworld https://github.com/fw876/helloworld.git
+#src-git passwall3 https://github.com/xiaorouji/openwrt-passwall-packages;main
 src-git danshui2 https://github.com/zhtcl/openwrt-package.git;Theme2
 EOF
 ./scripts/feeds update -a
@@ -367,10 +367,8 @@ COOLSNOWWOLF)
 #    cp -Rf ${HOME_PATH}/build/common/Share/btrfs-progs ${HOME_PATH}/feeds/packages/utils/btrfs-progs
 #  fi
   rm -rf ${HOME_PATH}/feeds/packages/net/xray-core
-  rm -rf ${HOME_PATH}/feeds/passwall3/v2ray-plugin
-  rm -rf ${HOME_PATH}/feeds/helloworld/xray-core
-  rm -rf ${HOME_PATH}/feeds/helloworld/v2ray-plugin
   rm -rf ${HOME_PATH}/package/libs/ustream-ssl
+  rm -rf ${HOME_PATH}/package/libs/uclient
 ;;
 LIENOL)
   s="mentohust,aliyundrive-webdav,pdnsd-alt,mt"
