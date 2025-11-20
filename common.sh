@@ -367,6 +367,7 @@ COOLSNOWWOLF)
 #    cp -Rf ${HOME_PATH}/build/common/Share/btrfs-progs ${HOME_PATH}/feeds/packages/utils/btrfs-progs
 #  fi
   rm -rf ${HOME_PATH}/feeds/packages/net/xray-core
+  rm -rf ${HOME_PATH}/feeds/helloworld/xray-core
 ;;
 LIENOL)
   s="mentohust,aliyundrive-webdav,pdnsd-alt,mt"
