@@ -370,6 +370,7 @@ COOLSNOWWOLF)
   rm -rf ${HOME_PATH}/feeds/passwall3/v2ray-plugin
   rm -rf ${HOME_PATH}/feeds/helloworld/xray-core
   rm -rf ${HOME_PATH}/feeds/helloworld/v2ray-plugin
+  rm -rf ${HOME_PATH}/package/libs/ustream-ssl
 ;;
 LIENOL)
   s="mentohust,aliyundrive-webdav,pdnsd-alt,mt"
